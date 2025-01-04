@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+
+
+:root {
+    /* Luxury */
+    --luxury-black: #000000;
+    --luxury-dark-grey: #252626;
+    --luxury-red: #991a00;
+    --luxury-light-grey: #dcdcdc;
+    --luxury-white: #ffffff;
+
+    /* Elegance */
+    --elegance-dark-brown: #734930;
+    --elegance-brown: #bf8a6b;
+    --elegance-light-brown: #d9c6ba;
+    /* --elegance-off-white: #f2eeeb; */
+    --elegance-off-white: #f2f2f2;
+    --elegance-black: #0d0d0d;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-family: "Oswald", sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: url(../public/background-home.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+}
