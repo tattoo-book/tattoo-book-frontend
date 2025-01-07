@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 class GatewayDefault {
     static baseURL = import.meta.env.VITE_API_GATEWAY;
-    async request(config: AxiosRequestConfig) {
+    async request<T>(config: AxiosRequestConfig) {
         if (!config.baseURL) {
             config.baseURL = GatewayDefault.baseURL;
         }

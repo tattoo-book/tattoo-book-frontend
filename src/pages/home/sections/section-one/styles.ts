@@ -6,12 +6,13 @@ import { BackgroundComponent } from "../../../../components/Background/style";
 //     width: 100%;
 // `;
 const Background = styled(BackgroundComponent)`
-    background-color: var(--elegance-off-white);
+    /* background-color: var(--elegance-off-white); */
+    background-color: #fff;
 `;
 
 const TituloContainer = styled.div`
     width: 100%;
-    height: 20%;
+    height: 30vh;
 
     display: flex;
     justify-content: center;
@@ -26,14 +27,22 @@ const Titulo = styled.h2`
 
 const ContentContainer = styled.div`
     width: 100%;
-    height: 80%;
+    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
+const ContentCardLIst = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    gap: 2rem;
+    width: 80%;
+    height: 100%;
+`;
+
 const CarouselCard = styled.div`
-    height: 80vh;
+    height: 70vh;
     /* width: 80vw; */
 `;
 
@@ -45,6 +54,7 @@ export const SectionOneUI = {
     },
     Content: {
         Container: ContentContainer,
+        CardList: ContentCardLIst,
         Carousel: {
             Card: CarouselCard,
         },

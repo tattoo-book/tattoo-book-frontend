@@ -20,6 +20,7 @@ const FormContainer = styled.div`
     height: 75%;
     border-radius: 1rem;
     background-color: white;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 10);
 
     display: flex;
     align-items: center;

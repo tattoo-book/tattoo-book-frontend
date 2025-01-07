@@ -1,3 +1,4 @@
+import SectionOne from "./sections/section-one/section-one";
 import { HomeUI } from "./styles";
 
 const { Background, BackgroundGlass, Header, Content } = HomeUI;
@@ -36,6 +37,7 @@ export default function HomePage() {
                     </Content.Container>
                 </BackgroundGlass>
             </Background>
+            <SectionOne />
         </div>
     );
 }
