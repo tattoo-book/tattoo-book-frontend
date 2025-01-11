@@ -1,6 +1,7 @@
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Card, Image } from "antd";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ITatttoo,
   TattooGateway,
@@ -28,17 +29,6 @@ export default function SectionOne() {
       response.forEach((tattoo) => {
         console.log(tattoo.imageName);
       });
-      // const list = response.map((tattoo: ITatttoo) => ({
-      //     ...tattoo,
-      //     imageBase64: convertBufferToImage(tattoo.image),
-      // }));
-      // console.log("IMAGE: BUFFER: ", list[0].imageBase64);
-      // setTattoos(list);
-      console.log(
-        `data:image/jpg;base64,${Buffer.from(response[0].image).toString(
-          "base64"
-        )}`
-      );
     } catch (error) {
       console.log("TATTOO ERROR: ", error);
     }
@@ -101,6 +91,8 @@ interface ITattooCard {
 }
 const TattooCard = (props: ITattooCard) => {
   const [liked, setLiked] = useState(true);
+  const { index } = props;
+
   return (
     <Card
       hoverable
@@ -155,12 +147,7 @@ const TattooCard = (props: ITattooCard) => {
           <p style={{ fontFamily: "Poppins", fontSize: "18px" }}>
             {props.card.description}
           </p>
-          <a
-            style={{ fontFamily: "Poppins", color: "blue" }}
-            className="hover:opacity-50"
-          >
-            ver tatuador
-          </a>
+          <Link to={`/barber/${index}`}> ver tatuador</Link>
         </div>
       </div>
     </Card>
