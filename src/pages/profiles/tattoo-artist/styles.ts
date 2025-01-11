@@ -7,4 +7,4 @@ const BackgroundGlass = styled.div`
   backdrop-filter: blur(3px);
 `;
 
-export const BarberPageUI = { BackgroundGlass };
+export const TattooArtistPageUI = { BackgroundGlass };

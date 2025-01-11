@@ -147,7 +147,7 @@ const TattooCard = (props: ITattooCard) => {
           <p style={{ fontFamily: "Poppins", fontSize: "18px" }}>
             {props.card.description}
           </p>
-          <Link to={`/profiles/barber/${index}`}> ver tatuador</Link>
+          <Link to={`/profiles/tattoo-artist/${index}`}> ver tatuador</Link>
         </div>
       </div>
     </Card>
