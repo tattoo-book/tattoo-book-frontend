@@ -6,7 +6,6 @@ import { ITattooCard } from "../most-popularu-tattoos.type";
 
 export const TattooCard = (props: ITattooCard) => {
   const [liked, setLiked] = useState(true);
-  const { index } = props;
 
   return (
     <Card
@@ -60,7 +59,7 @@ export const TattooCard = (props: ITattooCard) => {
         </div>
         <div className="flex justify-between items-baseline">
           <p style={{ fontFamily: "Poppins", fontSize: "18px" }}>{props.card.description}</p>
-          <Link to={`/profiles/tattoo-artist/${index}`}> ver tatuador</Link>
+          <Link to={`/profiles/tattoo-artist/${props.card.tattooArtistId}`}> ver tatuador</Link>
         </div>
       </div>
     </Card>
