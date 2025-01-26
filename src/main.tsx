@@ -16,11 +16,10 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/tattoos" element={<TattooPageList />} />
-        <Route
-          path="/profiles/tattoo-artist/:Id"
-          element={<TattooArtistPage />}
-        />
-        <Route path="/profiles/me" element={<ProfilePageMe />} />
+        <Route path="/profiles">
+          <Route path="tattoo-artist/:Id" element={<TattooArtistPage />} />
+          <Route path="me" element={<ProfilePageMe />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
