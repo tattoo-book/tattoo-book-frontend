@@ -5,14 +5,13 @@ interface IButton {
   onClick?: () => void;
   style?: React.CSSProperties;
   children: ReactNode | string;
-  block?: boolean | undefined;
-  type?: "link" | "text" | "default" | "primary" | "dashed" | undefined;
-  htmlType?: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset" | undefined;
+  className?: string;
 }
 
 export function ButtonComponent(props: IButton) {
   return (
-    <ButtonUI.Button style={props.style} onClick={props.onClick}>
+    <ButtonUI.Button className={props.className} style={props.style} onClick={props.onClick} type={props.type}>
       {props.children}
     </ButtonUI.Button>
   );

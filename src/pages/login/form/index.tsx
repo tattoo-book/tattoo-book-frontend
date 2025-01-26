@@ -49,9 +49,10 @@ export default function LoginForm() {
         </FormUI.Item>
 
         <FormUI.Item>
-          <ButtonComponent block style={{ height: "60px" }} type="primary" htmlType="submit">
+          <ButtonComponent style={{ height: "60px", width: "100%" }} className="hover:border-2" type="submit">
             Entrar
           </ButtonComponent>
+          <br></br>
           ou <a href="">Cadastre-se</a>
         </FormUI.Item>
       </FormUI.Form>
