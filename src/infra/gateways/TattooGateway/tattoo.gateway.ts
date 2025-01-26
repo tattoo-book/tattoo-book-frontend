@@ -1,4 +1,4 @@
-import { Gateway } from "./Gateway";
+import { Gateway } from "../Gateway";
 
 export interface ITatttoo {
   id: number;
@@ -17,17 +17,17 @@ interface Data<T> {
 
 class TattooGatewayImplement {
   async listAll(): Promise<ITatttoo[] | null> {
-    return await Gateway.request<Data<ITatttoo>>({
+    return await Gateway.request<Data<ITatttoo[]>>({
       method: "GET",
       url: "/tattoos",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-      .then((res) => {
+      .then((res: any) => {
         return res.data;
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.error("ERROR: ", err);
         throw err;
       });

@@ -1,4 +1,4 @@
-import { Gateway } from "./Gateway";
+import { Gateway } from "../Gateway";
 
 interface ILoginCredentials {
   email: string;
@@ -7,7 +7,7 @@ interface ILoginCredentials {
 
 export class AuthGatewayImplemented {
   async login(credentials: ILoginCredentials) {
-    return await Gateway.request({
+    return await Gateway.request<{ data: any }>({
       method: "POST",
       data: credentials,
       url: "/auth/sign-in",
