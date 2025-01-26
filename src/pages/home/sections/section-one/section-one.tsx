@@ -2,32 +2,21 @@ import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Card, Image } from "antd";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  ITatttoo,
-  TattooGateway,
-} from "../../../../infra/gateways/TattooGateway";
+import { ITattoo, TattooGateway } from "../../../../infra/gateways/TattooGateway/tattoo.gateway";
 import { SectionOneUI } from "./styles";
 
 const { Background, Titulo, Content } = SectionOneUI;
 
 export default function SectionOne() {
-  const [tattoos, setTattoos] = useState<ITatttoo[]>([]);
-
-  const convertBufferToImage = (buffer: Buffer) => {
-    // const base64 = buffer.toString("base64");
-    const imageSrc = `data:image/jpg;base64,${Buffer.from(buffer).toString(
-      "base64"
-    )}`;
-    console.log(imageSrc);
-    return imageSrc;
-  };
+  const [tattoos, setTattoos] = useState<ITattoo[]>([]);
 
   const getTattoos = async () => {
     try {
-      const response = await TattooGateway.listAll();
+      const response = await TattooGateway.list();
       if (!response) return;
       response.forEach((tattoo) => {
         console.log(tattoo.imageName);
+        setTattoos(response);
       });
     } catch (error) {
       console.log("TATTOO ERROR: ", error);
@@ -38,33 +27,6 @@ export default function SectionOne() {
     getTattoos();
   }, []);
 
-  const cards = [
-    {
-      title: "Image One",
-      description: "Leão",
-      image:
-        "https://home.inkacademy.com.br/wp-content/uploads/2022/07/d7fd19f74cb33a9113f80978675611ca.jpg",
-    },
-    {
-      title: "Image Two",
-      description: "Leão",
-      image:
-        "https://static.wixstatic.com/media/8fe1c2_7026213f5cbe46b69f1eb4ce23a9dc45~mv2.jpg/v1/fill/w_564,h_846,al_c,q_85,enc_auto/8fe1c2_7026213f5cbe46b69f1eb4ce23a9dc45~mv2.jpg",
-    },
-    {
-      title: "Image Three",
-      description: "Leão",
-      image:
-        "https://belohorizontemg.com.br/wp-content/uploads/2022/01/tattoo-1049x800.jpg",
-    },
-    {
-      title: "Image Four",
-      description: "Lobo",
-      image:
-        "https://i.pinimg.com/736x/be/9d/6a/be9d6a28a024c718a38a7d742b2a0397.jpg",
-    },
-  ];
-
   return (
     <Background>
       <Titulo.Container>
@@ -72,7 +34,7 @@ export default function SectionOne() {
       </Titulo.Container>
       <Content.Container className="px-20">
         <Content.CardList>
-          {cards.map((card, index) => (
+          {tattoos.map((card, index) => (
             <TattooCard index={index} card={card} />
           ))}
         </Content.CardList>
@@ -83,11 +45,7 @@ export default function SectionOne() {
 
 interface ITattooCard {
   index: number;
-  card: {
-    title: string;
-    description: string;
-    image: string;
-  };
+  card: ITattoo;
 }
 const TattooCard = (props: ITattooCard) => {
   const [liked, setLiked] = useState(true);
@@ -112,7 +70,7 @@ const TattooCard = (props: ITattooCard) => {
               height: 400,
               borderRadius: "0.75rem 0.75rem 0rem 0rem",
             }}
-            src={props.card.image}
+            src={props.card.imageLink}
           />
         </div>
       }
@@ -144,9 +102,7 @@ const TattooCard = (props: ITattooCard) => {
           )}
         </div>
         <div className="flex justify-between items-baseline">
-          <p style={{ fontFamily: "Poppins", fontSize: "18px" }}>
-            {props.card.description}
-          </p>
+          <p style={{ fontFamily: "Poppins", fontSize: "18px" }}>{props.card.description}</p>
           <Link to={`/profiles/tattoo-artist/${index}`}> ver tatuador</Link>
         </div>
       </div>

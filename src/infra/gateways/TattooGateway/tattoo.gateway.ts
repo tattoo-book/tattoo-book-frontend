@@ -1,12 +1,15 @@
 import { Gateway } from "../Gateway";
 
-export interface ITatttoo {
+export interface ITattoo {
   id: number;
+  title: string;
+  description: string;
   tattooArtistId: number;
   imageName: string;
   imageExtension: string;
   image: Buffer;
   imageBase64: string;
+  imageLink: string;
 }
 
 interface Data<T> {
@@ -16,8 +19,8 @@ interface Data<T> {
 }
 
 class TattooGatewayImplement {
-  async listAll(): Promise<ITatttoo[] | null> {
-    return await Gateway.request<Data<ITatttoo[]>>({
+  async list(): Promise<ITattoo[]> {
+    return await Gateway.request<Data<ITattoo[]>>({
       method: "GET",
       url: "/tattoos",
       headers: {
