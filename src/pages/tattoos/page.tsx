@@ -1,6 +1,7 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { ITattoo, TattooGateway } from "../../infra/gateways/TattooGateway/tattoo.gateway";
+import { TattooGateway } from "../../infra/gateways/tattoos/tattoo.gateway";
+import { ITattoo } from "../../infra/gateways/tattoos/tattoo.interface";
 import { TattooModal } from "./components/modal/modal";
 import { TattooPageListUI } from "./styles";
 

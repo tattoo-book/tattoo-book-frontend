@@ -3,7 +3,7 @@ import { Checkbox, Flex, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ButtonComponent } from "../../../components/Button/button";
 import { FormUI } from "../../../components/form";
-import { AuthGateway } from "../../../infra/gateways/AuthGateway/auth.gateway";
+import { AuthGateway } from "../../../infra/gateways/auth/auth.gateway";
 import { ILoginCredentials } from "./form.interfaces";
 import { LOGIN_FORM_RULES } from "./form.rules";
 import { LoginFormUI } from "./styles";

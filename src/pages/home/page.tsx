@@ -26,7 +26,7 @@ export default function HomePage() {
             <Header.Nav>
               <Header.Link>Novidades</Header.Link>
               <Header.Link>Sobre nos</Header.Link>
-              <Header.Link>Contato</Header.Link>
+              <Header.Link onClick={() => navigate("/profiles/me")}>Profile</Header.Link>
             </Header.Nav>
           </Header.Container>
 

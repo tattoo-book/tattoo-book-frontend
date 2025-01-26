@@ -24,7 +24,7 @@ export const LeftBox = (props: ILeftBox) => {
   };
 
   return (
-    <Container style={{ width: "20%", flexDirection: "column", alignItems: "center", gap: "50px" }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "50px" }}>
       <div style={{ background: "#8d8d8d", height: "150px", width: "150px", borderRadius: "50%", overflow: "hidden" }}>
         <img
           src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
@@ -32,7 +32,6 @@ export const LeftBox = (props: ILeftBox) => {
           style={{ height: "150px", width: "150px" }}
         />
       </div>
-
       <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", fontSize: "16px" }}>
         <p>Horários de atendimento</p>
         <SchedulingTime day="DOM:" hours={getScheduling(artist?.schedulings.sunday)} />
@@ -43,6 +42,6 @@ export const LeftBox = (props: ILeftBox) => {
         <SchedulingTime day="SEX:" hours={getScheduling(artist?.schedulings.friday)} />
         <SchedulingTime day="SAB:" hours={getScheduling(artist?.schedulings.saturday)} />
       </div>
-    </Container>
+    </div>
   );
 };

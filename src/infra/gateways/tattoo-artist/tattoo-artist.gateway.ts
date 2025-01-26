@@ -1,6 +1,6 @@
 import { TattooArtist } from "../../../types/tattoo-artist.type";
 import { Gateway } from "../Gateway";
-import { Data } from "../TattooGateway/tattoo.interface";
+import { Data } from "../tattoos/tattoo.interface";
 import { TattooArtistGatewayProps } from "./tattoo-artist.type";
 
 class TattooArtistGatewayClass {

@@ -1,0 +1,25 @@
+import { User } from "../../../types/user.type";
+import { Gateway } from "../Gateway";
+import { Data, ITattoo } from "../tattoos/tattoo.interface";
+
+class UserGatewayInfra {
+  async getInfoMe(): Promise<User> {
+    return await Gateway.request<Data<ITattoo[]>>({
+      method: "GET",
+      url: "/profiles/me",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res: any) => {
+        console.log(`[UserGatewayInfra] Success on get user info`);
+        return res.data;
+      })
+      .catch((err: any) => {
+        console.error("ERROR: ", err);
+        throw err;
+      });
+  }
+}
+
+export const UserGateway = new UserGatewayInfra();
