@@ -5,11 +5,15 @@ import { ITattoo } from "../../../../../../infra/gateways/TattooGateway/tattoo.i
 
 export function TattooList() {
   const [tattoos, setTattoos] = useState<ITattoo[]>([]);
+
   const loadTattoos = () => {
     TattooGateway.list()
       .then((res) => setTattoos(res))
       .catch((err) => console.log("Failed on load tattoos: ", err));
   };
+
+  const like = () => {};
+  const unlike = () => {};
 
   useEffect(() => loadTattoos(), []);
 

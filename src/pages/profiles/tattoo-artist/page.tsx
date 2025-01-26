@@ -12,6 +12,7 @@ export default function TattooArtistPage() {
   const { Id } = useParams();
   const [tatooArtist, setTattooArtist] = useState<TattooArtist | null>(null);
   const [rigthBoxContent, setRigthBoxContent] = useState<string>("tattoo-list");
+
   const loadArtistInfo = async () => {
     if (Id) {
       await TattooArtistGateway.findOne({ id: +Id })

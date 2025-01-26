@@ -5,30 +5,50 @@ import { useState } from "react";
 export interface ICard {
   index: number;
   content: {
+    id: number;
     title: string;
     description: string;
     imageLink: string;
     tattooArtistId: number;
   };
+  like?: () => void;
+  unlike?: () => void;
   style?: React.CSSProperties;
 }
 
 export function TattooCard(props: ICard) {
   const [liked, setLiked] = useState(true);
 
+  const like = () => {
+    const likeBody = {
+      id: props.content.id,
+      tattooArtistID: props.content.tattooArtistId,
+    };
+    setLiked(true);
+  };
+
+  const unlike = () => {
+    const unlikeBody = {
+      id: props.content.id,
+      tattooArtistID: props.content.tattooArtistId,
+    };
+    setLiked(false);
+  };
+
   const renderHeartOutlined = () => {
     return (
       <HeartOutlined
-        onClick={() => setLiked(true)}
+        onClick={() => like()}
         className="hover:animate-pulse hover:scale-110 transition-transform duration-300 heartbeat 0.6s infinite ease-in-out"
         style={{ fontFamily: "Poppins", fontSize: "16px" }}
       />
     );
   };
+
   const renderHeartFilled = () => {
     return (
       <HeartFilled
-        onClick={() => setLiked(false)}
+        onClick={() => unlike()}
         className="hover:animate-pulse hover:scale-110 transition-transform duration- heartbeat 0.6s infinite ease-in-out"
         style={{ color: "red", fontFamily: "Poppins", fontSize: "16px" }}
       />
