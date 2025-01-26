@@ -1,5 +1,5 @@
-import { Button } from "antd";
 import React, { ReactNode } from "react";
+import { ButtonUI } from "./styles";
 
 interface IButton {
   onClick?: () => void;
@@ -12,14 +12,8 @@ interface IButton {
 
 export function ButtonComponent(props: IButton) {
   return (
-    <Button
-      block={props.block}
-      style={props.style}
-      type={props.type || "default"}
-      htmlType={props.htmlType || "button"}
-      onClick={props.onClick}
-    >
+    <ButtonUI.Button style={props.style} onClick={props.onClick}>
       {props.children}
-    </Button>
+    </ButtonUI.Button>
   );
 }

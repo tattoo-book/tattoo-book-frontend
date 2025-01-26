@@ -5,7 +5,7 @@ const ContentButton = styled.button`
   border-radius: 0.25rem;
   background-color: var(--elegance-brown);
   border: 1px solid var(--elegance-brown);
-  font-size: larger;
+  font-size: 18px;
   color: var(--elegance-black);
   text-transform: uppercase;
   transition: 500ms;
