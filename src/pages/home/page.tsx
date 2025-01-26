@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button/Button";
+import { ButtonComponent } from "../../components/Button/button";
 import HomeFooter from "./components/footer";
 import SectionOne from "./sections/section-one/section-one";
 import { HomeUI } from "./styles";
@@ -15,9 +15,7 @@ export default function HomePage() {
         <BackgroundGlass>
           <Header.Container>
             <Header.Nav>
-              <Header.Link onClick={() => navigate("/tattoos")}>
-                Tatuagens
-              </Header.Link>
+              <Header.Link onClick={() => navigate("/tattoos")}>Tatuagens</Header.Link>
               <Header.Link>Tatuadores</Header.Link>
               <Header.Link>Estudios</Header.Link>
             </Header.Nav>
@@ -37,7 +35,7 @@ export default function HomePage() {
               <Titulo>Marque seus momentos</Titulo>
               <SubTitulo>Encontre as melhores ideias e profissionais</SubTitulo>
             </div>
-            <Button content="Ver mais" onClick={() => console.log("click")} />
+            <ButtonComponent onClick={() => console.log("click")}>Ver mais</ButtonComponent>
           </Content.Container>
         </BackgroundGlass>
       </Background>
