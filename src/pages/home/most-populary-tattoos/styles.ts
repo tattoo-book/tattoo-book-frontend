@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BackgroundComponent } from "../../../../components/Background/style";
+import { BackgroundComponent } from "../../../components/Background/style";
 
 const Background = styled(BackgroundComponent)`
   background-color: var(--elegance-off-white);
@@ -13,11 +13,6 @@ const HeartCard = styled.div`
   transform: scale(1);
   transition: transform 0.3s ease-in-out;
   clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 50% 80%, 15% 100%, 0% 35%);
-`;
-
-const HeartAnimation = styled(HeartCard)`
-  transform: scale(1.2);
-  animation: heartbeat 0.6s infinite ease-in-out;
 `;
 
 const TituloContainer = styled.div`
@@ -55,7 +50,7 @@ const CarouselCard = styled.div`
   height: 70vh;
 `;
 
-export const SectionOneUI = {
+export const MostPopularuTattoosUI = {
   Background,
   Titulo: {
     Container: TituloContainer,

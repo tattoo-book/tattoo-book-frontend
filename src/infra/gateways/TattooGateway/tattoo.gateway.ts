@@ -1,31 +1,16 @@
 import { Gateway } from "../Gateway";
-
-export interface ITattoo {
-  id: number;
-  title: string;
-  description: string;
-  tattooArtistId: number;
-  imageName: string;
-  imageExtension: string;
-  image: Buffer;
-  imageBase64: string;
-  imageLink: string;
-}
-
-interface Data<T> {
-  status: number;
-  message: string;
-  data: T;
-}
+import { Data, ITattoo } from "./tattoo.interface";
+import { ParamsDTO } from "./tattoo.type";
 
 class TattooGatewayImplement {
-  async list(): Promise<ITattoo[]> {
+  async list(params?: ParamsDTO): Promise<ITattoo[]> {
     return await Gateway.request<Data<ITattoo[]>>({
       method: "GET",
       url: "/tattoos",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
+      params: { ...params },
     })
       .then((res: any) => {
         return res.data;

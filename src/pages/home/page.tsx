@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ButtonComponent } from "../../components/Button/button";
 import HomeFooter from "./components/footer";
-import SectionOne from "./sections/section-one/section-one";
+import { MostPopularyTattoos } from "./most-populary-tattoos/most-populary-tattoos";
 import { HomeUI } from "./styles";
 
 const { Background, BackgroundGlass, Header, Content } = HomeUI;
@@ -39,7 +39,7 @@ export default function HomePage() {
           </Content.Container>
         </BackgroundGlass>
       </Background>
-      <SectionOne />
+      <MostPopularyTattoos />
       <HomeFooter />
     </div>
   );

@@ -1,53 +1,10 @@
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Card, Image } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ITattoo, TattooGateway } from "../../../../infra/gateways/TattooGateway/tattoo.gateway";
-import { SectionOneUI } from "./styles";
+import { ITattooCard } from "../most-popularu-tattoos.type";
 
-const { Background, Titulo, Content } = SectionOneUI;
-
-export default function SectionOne() {
-  const [tattoos, setTattoos] = useState<ITattoo[]>([]);
-
-  const getTattoos = async () => {
-    try {
-      const response = await TattooGateway.list();
-      if (!response) return;
-      response.forEach((tattoo) => {
-        console.log(tattoo.imageName);
-        setTattoos(response);
-      });
-    } catch (error) {
-      console.log("TATTOO ERROR: ", error);
-    }
-  };
-
-  useEffect(() => {
-    getTattoos();
-  }, []);
-
-  return (
-    <Background>
-      <Titulo.Container>
-        <Titulo.H2>Conheça alguns trabalhos populares</Titulo.H2>
-      </Titulo.Container>
-      <Content.Container className="px-20">
-        <Content.CardList>
-          {tattoos.map((card, index) => (
-            <TattooCard index={index} card={card} />
-          ))}
-        </Content.CardList>
-      </Content.Container>
-    </Background>
-  );
-}
-
-interface ITattooCard {
-  index: number;
-  card: ITattoo;
-}
-const TattooCard = (props: ITattooCard) => {
+export const TattooCard = (props: ITattooCard) => {
   const [liked, setLiked] = useState(true);
   const { index } = props;
 
