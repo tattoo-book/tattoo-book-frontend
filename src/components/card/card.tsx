@@ -34,13 +34,12 @@ export function TattooCard(props: ICard) {
     };
     setLiked(false);
   };
-
   const renderHeartOutlined = () => {
     return (
       <HeartOutlined
         onClick={() => like()}
-        className="hover:animate-pulse hover:scale-110 transition-transform duration-300 heartbeat 0.6s infinite ease-in-out"
-        style={{ fontFamily: "Poppins", fontSize: "16px" }}
+        className="hover:animate-pulse hover:scale-125 transition-transform duration-200 ease-in-out"
+        style={{ fontFamily: "Poppins", fontSize: "18px" }}
       />
     );
   };
@@ -49,11 +48,31 @@ export function TattooCard(props: ICard) {
     return (
       <HeartFilled
         onClick={() => unlike()}
-        className="hover:animate-pulse hover:scale-110 transition-transform duration- heartbeat 0.6s infinite ease-in-out"
-        style={{ color: "red", fontFamily: "Poppins", fontSize: "16px" }}
+        className="hover:animate-pulse hover:scale-125 transition-transform duration-300 ease-in-out"
+        style={{ color: "red", fontFamily: "Poppins", fontSize: "18px" }}
       />
     );
   };
+
+  // const renderHeartOutlined = () => {
+  //   return (
+  //     <HeartOutlined
+  //       onClick={() => like()}
+  //       className="hover:animate-pulse hover:scale-110 transition-transform duration-300 heartbeat 0.6s infinite ease-in-out"
+  //       style={{ fontFamily: "Poppins", fontSize: "16px" }}
+  //     />
+  //   );
+  // };
+
+  // const renderHeartFilled = () => {
+  //   return (
+  //     <HeartFilled
+  //       onClick={() => unlike()}
+  //       className="hover:animate-pulse hover:scale-110 transition-transform duration- heartbeat 0.6s infinite ease-in-out"
+  //       style={{ color: "red", fontFamily: "Poppins", fontSize: "16px" }}
+  //     />
+  //   );
+  // };
   const defaultStyles: React.CSSProperties = {
     backgroundColor: "#f2eeeb",
     borderRadius: "0.75rem",

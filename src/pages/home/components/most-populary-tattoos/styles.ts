@@ -1,18 +1,8 @@
 import styled from "styled-components";
-import { BackgroundComponent } from "../../../components/Background/style";
+import { BackgroundComponent } from "../../../../components/Background/style";
 
 const Background = styled(BackgroundComponent)`
   background-color: var(--elegance-off-white);
-`;
-
-const HeartCard = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: #ff4d6d;
-  position: relative;
-  transform: scale(1);
-  transition: transform 0.3s ease-in-out;
-  clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 50% 80%, 15% 100%, 0% 35%);
 `;
 
 const TituloContainer = styled.div`

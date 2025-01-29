@@ -24,20 +24,23 @@
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
 }
 
 /* Fundo da barra */
 ::-webkit-scrollbar-track {
-    background: #0d0d0d;
+    /* background: #0d0d0d; */
+    background: rgba(0, 0, 0, 1);
 }
 
 /* Barra em si */
 ::-webkit-scrollbar-thumb {
+    /* background: #8d8d8d; */
     background-color: #bf8a6b;
     border-radius: 10px;
-    border: 3px solid #0d0d0d;
+    border: 3px solid transparent
+        /* border: 3px solid #0d0d0d; */
 }
 
 /* Ao passar o mouse */

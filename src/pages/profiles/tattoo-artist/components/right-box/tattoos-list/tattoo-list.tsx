@@ -8,7 +8,7 @@ export function TattooList() {
 
   const loadTattoos = () => {
     TattooGateway.list()
-      .then((res) => setTattoos(res))
+      .then((res) => setTattoos([...res, ...res, ...res]))
       .catch((err) => console.log("Failed on load tattoos: ", err));
   };
 
@@ -18,9 +18,18 @@ export function TattooList() {
   useEffect(() => loadTattoos(), []);
 
   return (
-    <div style={{ display: "flex", gap: "1.5rem" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "1.5rem",
+        padding: "8px",
+        flexWrap: "wrap",
+        overflowY: "scroll",
+        scrollbarColor: "white",
+      }}
+    >
       {tattoos.map((tattoo, index) => (
-        <TattooCard index={index} content={tattoo} style={{ height: "45%", width: "20%" }} />
+        <TattooCard index={index} content={tattoo} style={{ height: "40%", width: "18%" }} />
       ))}
     </div>
   );

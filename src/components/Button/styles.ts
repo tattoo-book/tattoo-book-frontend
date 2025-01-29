@@ -6,7 +6,8 @@ const ContentButton = styled.button`
   background-color: var(--elegance-brown);
   border: 1px solid var(--elegance-brown);
   font-size: 18px;
-  color: var(--elegance-black);
+  /* color: var(--elegance-dark-brown); */
+  color: white;
   text-transform: uppercase;
   transition: 500ms;
   &:hover {
