@@ -4,3 +4,5 @@
 ![](./images/readme/home-page.png)
 ![](./images/readme/section-one.png)
 ![](./images/readme/section-one-ampliada.png)
+![](./images/readme/tattoo-artist-profile.png)
+![](./images/readme/tattoo-list.png)
