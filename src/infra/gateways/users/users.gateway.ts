@@ -1,12 +1,13 @@
 import { User } from "../../../types/user.type";
 import { Gateway } from "../Gateway";
-import { Data, ITattoo } from "../tattoos/tattoo.interface";
+import { Data } from "../tattoos/tattoo.interface";
+import { InfoMe } from "./users.interface";
 
 class UserGatewayInfra {
   async getInfoMe(): Promise<User> {
-    return await Gateway.request<Data<ITattoo[]>>({
+    return await Gateway.request<Data<InfoMe>>({
       method: "GET",
-      url: "/profiles/me",
+      url: "/users/me",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

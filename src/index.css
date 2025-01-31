@@ -7,45 +7,30 @@
 @tailwind components;
 
 :root {
-    /* Luxury */
-    --luxury-black: #000000;
-    --luxury-dark-grey: #252626;
-    --luxury-red: #991a00;
-    --luxury-light-grey: #dcdcdc;
-    --luxury-white: #ffffff;
-
     /* Elegance */
     --elegance-dark-brown: #734930;
     --elegance-brown: #bf8a6b;
     --elegance-light-brown: #d9c6ba;
-    --elegance-off-white: #f2eeeb;
-    /* --elegance-off-white: #f2f2f2; */
+    --elegance-off-white: #f2f2f2;
     --elegance-black: #0d0d0d;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
 }
 
 /* Fundo da barra */
 ::-webkit-scrollbar-track {
-    /* background: #0d0d0d; */
-    background: rgba(0, 0, 0, 1);
+    background: #bdbdbd;
+    border-radius: 8px;
 }
 
 /* Barra em si */
 ::-webkit-scrollbar-thumb {
-    /* background: #8d8d8d; */
-    background-color: #bf8a6b;
+    background-color: var(--elegance-black);
     border-radius: 10px;
-    border: 3px solid transparent
-        /* border: 3px solid #0d0d0d; */
-}
-
-/* Ao passar o mouse */
-::-webkit-scrollbar-thumb:hover {
-    background-color: #bf8a6b;
+    /* border: 1px solid #bdbdbd */
 }
 
 * {

@@ -6,3 +6,4 @@
 ![](./images/readme/section-one-ampliada.png)
 ![](./images/readme/tattoo-artist-profile.png)
 ![](./images/readme/tattoo-list.png)
+![](./images/readme/profile-me.png)
