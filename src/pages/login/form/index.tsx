@@ -1,7 +1,7 @@
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { Checkbox, Flex, Input } from "antd";
 import { useNavigate } from "react-router-dom";
-import { ButtonComponent } from "../../../components/Button/button";
+import { ButtonComponent } from "../../../components/button/button";
 import { FormUI } from "../../../components/form";
 import { AuthGateway } from "../../../infra/gateways/auth/auth.gateway";
 import { ILoginCredentials } from "./form.interfaces";

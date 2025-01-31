@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ButtonComponent } from "../../../../components/Button/button";
+import { ButtonComponent } from "../../../../components/button/button";
 import { HomeUI } from "../../styles";
 
 const { Background, BackgroundGlass, Header, Content } = HomeUI;
