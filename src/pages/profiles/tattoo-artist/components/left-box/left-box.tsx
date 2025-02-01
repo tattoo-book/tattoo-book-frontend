@@ -50,8 +50,8 @@ export const LeftBox = (props: ILeftBox) => {
       </div>
 
       <div className="w-full py-0 px-3 flex flex-col items-center">
-        <p style={{ fontSize: "18px" }}>{props.artist?.name}</p>
-        <p style={{ fontSize: "18px", fontWeight: "normal" }}>@{props.artist?.name.split(" ")[0]}</p>
+        <p style={{ fontSize: "18px" }}>@{props.artist?.name}</p>
+        <p style={{ fontSize: "18px", fontWeight: "normal" }}></p>
       </div>
 
       <div className="w-full py-0 px-3 flex flex-col justify-start gap-1">
@@ -61,7 +61,10 @@ export const LeftBox = (props: ILeftBox) => {
         <SelectTab style={horario(true)} blocked label="Agende Seu Horário" />
       </div>
 
-      <div className="w-full py-0 px-6 flex flex-col justify-center items-start text-base">
+      <div
+        style={{ maxHeight: "26%" }}
+        className="w-full py-0 px-6 flex flex-col justify-center items-start text-base overflow-x-hidden"
+      >
         <p>Horários de atendimento</p>
         <SchedulingTime day="DOM:" hours={getScheduling(artist?.schedulings.sunday)} />
         <SchedulingTime day="SEG:" hours={getScheduling(artist?.schedulings.monday)} />

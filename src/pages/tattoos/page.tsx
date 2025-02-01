@@ -1,5 +1,5 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loading } from "../../components/loading";
 import { useListTattoos } from "../../hooks/tattoos/list-tattoos";
 import { ITattoo } from "../../infra/tattoos/tattoo.interface";
@@ -11,14 +11,21 @@ const { Background, List, Input } = TattooPageListUI;
 export default function TattooPageList() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalCard, setModalCard] = useState<ITattoo | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
 
-  const { isLoading, data: tattoos } = useListTattoos();
+  const { isLoading, data: tattoos, refetch } = useListTattoos({ search: { searchValues: searchTerm } });
 
-  if (isLoading) return <Loading />;
-
-  const onSearch = () => {
-    console.log("Searching ...");
+  const onChange = (value: string) => {
+    setSearchTerm(value == "" ? undefined : value);
   };
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      refetch();
+    }, 500); // Debounce de 500ms para evitar muitas requisições
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm, refetch]);
 
   const openModal = (index: number) => {
     if (tattoos) setModalCard(tattoos[index]);
@@ -35,19 +42,26 @@ export default function TattooPageList() {
       <TattooModal showModal={showModal} card={modalCard} close={closeModal} />
       <Input.Container>
         <div className="flex">
-          <Input.Search placeholder="Procure por tatuador, tatuagens, estilo ... " />
-          <Input.Button onClick={onSearch}>
+          <Input.Search
+            onChange={(event) => onChange(event.target.value)}
+            placeholder="Procure por tatuador, tatuagens, estilo ... "
+          />
+          <Input.Button onClick={() => console.log("Click")}>
             <SearchOutlined style={{ color: "#bf8a6b", fontSize: "22px" }} />
           </Input.Button>
         </div>
       </Input.Container>
-      <List.Container>
-        {tattoos?.map((tattoo, index) => (
-          <List.ImageContainer key={index}>
-            <List.Image src={tattoo.imageLink} onClick={() => openModal(index)} />
-          </List.ImageContainer>
-        ))}
-      </List.Container>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <List.Container>
+          {tattoos?.map((tattoo, index) => (
+            <List.ImageContainer key={index}>
+              <List.Image src={tattoo.imageLink} onClick={() => openModal(index)} />
+            </List.ImageContainer>
+          ))}
+        </List.Container>
+      )}
     </Background>
   );
 }

@@ -16,14 +16,16 @@ export function TattooList() {
   if (isLoading) return <Loading />;
 
   return (
-    <TattooListContainer className="flex gap-6 p-2 flex-wrap overflow-y-scroll">
-      {data?.map((tattoo, index) => (
-        <TattooCard
-          index={index}
-          content={tattoo}
-          style={{ height: "40%", minHeight: "280px", width: "18%", minWidth: "180px" }}
-        />
-      ))}
+    <TattooListContainer className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full">
+      {data &&
+        [...data, ...data, ...data]?.map((tattoo, index) => (
+          <TattooCard
+            key={index}
+            index={index}
+            content={tattoo}
+            style={{ maxHeight: "300px", minHeight: "280px", maxWidth: "calc(20% - 24px)", minWidth: "200px" }}
+          />
+        ))}
     </TattooListContainer>
   );
 }

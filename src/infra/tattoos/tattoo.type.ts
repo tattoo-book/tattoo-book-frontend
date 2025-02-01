@@ -2,5 +2,6 @@ export type ParamsDTO = {
   order?: {
     popularity: "asc" | "desc";
   };
-  take?: number;
+  search?: { searchValues: string | undefined };
+  pageSize?: number;
 };
