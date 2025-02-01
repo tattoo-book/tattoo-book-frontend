@@ -1,9 +1,9 @@
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Checkbox, Flex, Input } from "antd";
+import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
-import { ButtonComponent } from "../../../components/button/button";
-import { FormUI } from "../../../components/form";
-import { AuthGateway } from "../../../infra/gateways/auth/auth.gateway";
+import { ButtonComponent } from "../../../../components/button/button";
+import { FormUI } from "../../../../components/form";
+import { AuthGateway } from "../../../../infra/auth/auth.gateway";
 import { ILoginCredentials } from "./form.interfaces";
 import { LOGIN_FORM_RULES } from "./form.rules";
 import { LoginFormUI } from "./styles";
@@ -34,15 +34,20 @@ export default function LoginForm() {
         onFinish={onFinish}
       >
         <FormUI.Item name="email" rules={[LOGIN_FORM_RULES.username]}>
-          <Input style={{ height: "60px" }} prefix={<MailOutlined />} placeholder="Digite seu email" />
+          <FormUI.Input style={{ height: "60px" }} prefix={<MailOutlined />} placeholder="Digite seu email" />
         </FormUI.Item>
         <FormUI.Item name="password" rules={[LOGIN_FORM_RULES.password]}>
-          <Input style={{ height: "60px" }} prefix={<LockOutlined />} type="password" placeholder="Digite sua senha" />
+          <FormUI.Input
+            style={{ height: "60px" }}
+            prefix={<LockOutlined />}
+            type="password"
+            placeholder="Digite sua senha"
+          />
         </FormUI.Item>
         <FormUI.Item>
           <Flex justify="space-between" align="center">
             <FormUI.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Lembre-se de mim</Checkbox>
+              <FormUI.Checkbox>Lembre-se de mim</FormUI.Checkbox>
             </FormUI.Item>
             <a href="">Recuperar senha</a>
           </Flex>

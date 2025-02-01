@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProfilesLayout } from "../../../components/layouts/profiles/layout";
-import { TattooArtistGateway } from "../../../infra/gateways/tattoo-artist/tattoo-artist.gateway";
-import { TattooArtist } from "../../../types/tattoo-artist.type";
+import { TattooArtistGateway } from "../../../infra/tattoo-artist/gateway/tattoo-artist.gateway";
+import { TattooArtist } from "../../../infra/tattoo-artist/tattoo-artist.type";
 import { LeftBox } from "./components/left-box/left-box";
 import { RigthBox } from "./components/right-box/right-box";
 

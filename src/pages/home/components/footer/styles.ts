@@ -25,6 +25,7 @@ const FooterContainerColumns = styled.div`
   flex-direction: column;
   gap: 0.25rem;
 `;
+
 const FooterContainerH2 = styled.h2`
   font-weight: bold;
   font-family: "Poppins";

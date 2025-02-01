@@ -4,6 +4,7 @@ interface IRigthBox {
   content: string;
 }
 
-export const RigthBox = (_props: IRigthBox) => {
-  return <TattooList />;
+export const RigthBox = (props: IRigthBox) => {
+  if (props.content == "tattoo-list") return <TattooList />;
+  return <div></div>;
 };

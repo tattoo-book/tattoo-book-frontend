@@ -2,7 +2,7 @@ import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Card, Image } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ITattooCard } from "../most-popularu-tattoos.type";
+import { ITattooCard } from "../most-populary.type";
 
 export const TattooCard = (props: ITattooCard) => {
   const [liked, setLiked] = useState(true);

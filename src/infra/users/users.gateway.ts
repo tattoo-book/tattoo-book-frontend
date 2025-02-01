@@ -1,6 +1,6 @@
-import { User } from "../../../types/user.type";
-import { Gateway } from "../Gateway";
+import { Gateway } from "../architecture/gateway/Gateway";
 import { Data } from "../tattoos/tattoo.interface";
+import { User } from "./user.type";
 import { InfoMe } from "./users.interface";
 
 class UserGatewayInfra {

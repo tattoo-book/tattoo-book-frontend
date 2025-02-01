@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProfilesLayout } from "../../../components/layouts/profiles/layout";
-import { UserGateway } from "../../../infra/gateways/users/users.gateway";
-import { User } from "../../../types/user.type";
+import { User } from "../../../infra/users/user.type";
+import { UserGateway } from "../../../infra/users/users.gateway";
 import { LeftBox } from "./components/left-box/left-box";
 import { RigthBox } from "./components/right-box/right-box";
 

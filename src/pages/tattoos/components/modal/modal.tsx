@@ -1,5 +1,5 @@
 import { Image, Modal } from "antd";
-import { ITattoo } from "../../../../infra/gateways/tattoos/tattoo.interface";
+import { ITattoo } from "../../../../infra/tattoos/tattoo.interface";
 import { TattooModalUI } from "./styles";
 
 export interface ITattooInfo {

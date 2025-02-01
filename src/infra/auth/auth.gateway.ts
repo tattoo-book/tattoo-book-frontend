@@ -1,4 +1,4 @@
-import { Gateway } from "../Gateway";
+import { Gateway } from "../architecture/gateway/Gateway";
 
 interface ILoginCredentials {
   email: string;

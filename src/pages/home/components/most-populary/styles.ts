@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { BackgroundComponent } from "../../../../components/Background/style";
 
-const Background = styled(BackgroundComponent)`
+const Background = styled.div`
+  width: 100vw;
+  height: 100vh;
   background-color: var(--elegance-off-white);
 `;
 

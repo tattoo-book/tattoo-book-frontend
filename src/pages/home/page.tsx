@@ -1,6 +1,6 @@
 import HomeFooter from "./components/footer";
 import { HomeHeader } from "./components/header";
-import { MostPopularyTattoos } from "./components/most-populary-tattoos/most-populary-tattoos";
+import { MostPopularyTattoos } from "./components/most-populary/most-populary";
 
 export default function HomePage() {
   return (

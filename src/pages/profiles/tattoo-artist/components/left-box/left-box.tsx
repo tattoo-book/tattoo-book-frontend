@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SelectTab from "../../../../../components/sidebar/select-tab";
-import { SchedulingTimes, TattooArtist } from "../../../../../types/tattoo-artist.type";
+import { SchedulingTimes, TattooArtist } from "../../../../../infra/tattoo-artist/tattoo-artist.type";
 import { TattooArtistProfileComponentsUI } from "../styles";
 import { SchedulingTime } from "./scheduling-times";
 
@@ -40,16 +40,7 @@ export const LeftBox = (props: ILeftBox) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "20px",
-        width: "100%",
-        height: "100%",
-      }}
-    >
+    <div className="flex flex-col items-center gap-5 w-full h-full">
       <div style={{ background: "#8d8d8d", height: "180px", width: "180px", borderRadius: "50%", overflow: "hidden" }}>
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaDn4pdIrIiSa0yJAIlDj4aHIOEpQbbYinYg&s"
@@ -57,44 +48,20 @@ export const LeftBox = (props: ILeftBox) => {
           style={{ height: "180px", width: "180px" }}
         />
       </div>
-      <div
-        style={{
-          width: "100%",
-          padding: "0px 10px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
+
+      <div className="w-full py-0 px-3 flex flex-col items-center">
         <p style={{ fontSize: "18px" }}>{props.artist?.name}</p>
         <p style={{ fontSize: "18px", fontWeight: "normal" }}>@{props.artist?.name.split(" ")[0]}</p>
       </div>
-      <div
-        style={{
-          width: "100%",
-          padding: "0px 10px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          gap: "10px",
-        }}
-      >
+
+      <div className="w-full py-0 px-3 flex flex-col justify-start gap-3">
         <SelectTab style={schedulings(false)} blocked label="Agendamentos" />
         <SelectTab style={popularyJobs(true)} label="Trabalhos Populares" />
         <SelectTab style={feedbacks(true)} blocked label="Feedbacks" />
         <SelectTab style={horario(true)} blocked label="Agende Seu Horário" />
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "center",
-          fontSize: "16px",
-          width: "100%",
-          padding: "0px 25px",
-        }}
-      >
+
+      <div className="w-full py-0 px-6 flex flex-col justify-center items-start text-base">
         <p>Horários de atendimento</p>
         <SchedulingTime day="DOM:" hours={getScheduling(artist?.schedulings.sunday)} />
         <SchedulingTime day="SEG:" hours={getScheduling(artist?.schedulings.monday)} />

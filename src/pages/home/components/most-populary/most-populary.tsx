@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { TattooGateway } from "../../../../infra/gateways/tattoos/tattoo.gateway";
-import { ITattoo } from "../../../../infra/gateways/tattoos/tattoo.interface";
+import { TattooGateway } from "../../../../infra/tattoos/tattoo.gateway";
+import { ITattoo } from "../../../../infra/tattoos/tattoo.interface";
 import { TattooCard } from "./card/card";
 import { MostPopularuTattoosUI } from "./styles";
 
