@@ -1,6 +1,7 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
-import { TattooGateway } from "../../infra/tattoos/tattoo.gateway";
+import { useState } from "react";
+import { Loading } from "../../components/loading";
+import { useListTattoos } from "../../hooks/tattoos/list-tattoos";
 import { ITattoo } from "../../infra/tattoos/tattoo.interface";
 import { TattooModal } from "./components/modal/modal";
 import { TattooPageListUI } from "./styles";
@@ -10,22 +11,17 @@ const { Background, List, Input } = TattooPageListUI;
 export default function TattooPageList() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalCard, setModalCard] = useState<ITattoo | null>(null);
-  const [tattoos, setTattoos] = useState<ITattoo[]>([]);
 
-  const loadTattoos = async () => {
-    try {
-      await TattooGateway.list().then((res) => setTattoos([...res, ...res, ...res]));
-    } catch (error) {
-      console.log("ERROR ON LOAD TATTOOS: ", error);
-    }
-  };
+  const { isLoading, data: tattoos } = useListTattoos();
+
+  if (isLoading) return <Loading />;
 
   const onSearch = () => {
     console.log("Searching ...");
   };
 
   const openModal = (index: number) => {
-    setModalCard(tattoos[index]);
+    if (tattoos) setModalCard(tattoos[index]);
     setShowModal(true);
   };
 
@@ -33,10 +29,6 @@ export default function TattooPageList() {
     setModalCard(null);
     setShowModal(false);
   };
-
-  useEffect(() => {
-    loadTattoos();
-  }, []);
 
   return (
     <Background>
@@ -50,7 +42,7 @@ export default function TattooPageList() {
         </div>
       </Input.Container>
       <List.Container>
-        {tattoos.map((tattoo, index) => (
+        {tattoos?.map((tattoo, index) => (
           <List.ImageContainer key={index}>
             <List.Image src={tattoo.imageLink} onClick={() => openModal(index)} />
           </List.ImageContainer>
