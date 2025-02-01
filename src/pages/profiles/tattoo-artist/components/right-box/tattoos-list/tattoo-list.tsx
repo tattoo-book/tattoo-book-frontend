@@ -1,25 +1,15 @@
-import { useEffect, useState } from "react";
 import { TattooCard } from "../../../../../../components/card/card";
-import { TattooGateway } from "../../../../../../infra/tattoos/tattoo.gateway";
-import { ITattoo } from "../../../../../../infra/tattoos/tattoo.interface";
+import { Loading } from "../../../../../../components/loading";
+import { useListTattos } from "../../../../../../hooks/tattoo-artist/list-tattoos";
 
 export function TattooList() {
-  const [tattoos, setTattoos] = useState<ITattoo[]>([]);
+  const { isLoading, data, error } = useListTattos();
 
-  const loadTattoos = () => {
-    TattooGateway.list()
-      .then((res) => setTattoos([...res, ...res, ...res]))
-      .catch((err) => console.log("Failed on load tattoos: ", err));
-  };
-
-  const like = () => {};
-  const unlike = () => {};
-
-  useEffect(() => loadTattoos(), []);
+  if (isLoading) return <Loading />;
 
   return (
     <div className="flex gap-6 p-2 flex-wrap overflow-y-scroll">
-      {tattoos.map((tattoo, index) => (
+      {data?.map((tattoo, index) => (
         <TattooCard index={index} content={tattoo} style={{ height: "40%", width: "18%" }} />
       ))}
     </div>
