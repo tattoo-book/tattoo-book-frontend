@@ -1,31 +1,28 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProfilesLayout } from "../../../components/layouts/profiles/layout";
-import { TattooArtistGateway } from "../../../infra/tattoo-artist/gateway/tattoo-artist.gateway";
-import { TattooArtist } from "../../../infra/tattoo-artist/tattoo-artist.type";
+import { Loading } from "../../../components/loading";
+import { useGetSingleTattooArtist } from "../../../hooks/tattoo-artist/get-single-tattoo-artist";
 import { LeftBox } from "./components/left-box/left-box";
 import { RigthBox } from "./components/right-box/right-box";
 
 export default function TattooArtistPage() {
   const { Id } = useParams();
-  const [tatooArtist, setTattooArtist] = useState<TattooArtist | null>(null);
   const [rigthBoxContent, setRigthBoxContent] = useState<string>("tattoo-list");
 
-  const loadArtistInfo = async () => {
-    if (!Id) return;
+  const { isLoading, error, data: tattooArtist } = useGetSingleTattooArtist(Id); // Use o hook
 
-    await TattooArtistGateway.findOne({ id: +Id })
-      .then((tattooArtist) => setTattooArtist(tattooArtist))
-      .catch((err) => console.log(`FAILED ON GET TATTTOO ARTIST WITH ID ${Id}`, err));
-  };
+  if (isLoading) return <Loading />;
 
-  useEffect(() => {
-    loadArtistInfo();
-  }, []);
+  if (error) return <div>Error loading tattoo artist info.</div>;
+
+  if (!tattooArtist) return <div>Tattoo artist not found.</div>;
+
+  const changeTab = (tabSelected: string) => setRigthBoxContent(tabSelected);
 
   return (
     <ProfilesLayout
-      leftContent={<LeftBox artist={tatooArtist} content={rigthBoxContent} />}
+      leftContent={<LeftBox artist={tattooArtist} content={rigthBoxContent} changeTab={changeTab} />}
       rigthContent={<RigthBox content={rigthBoxContent} />}
     />
   );

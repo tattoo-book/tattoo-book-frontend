@@ -16,4 +16,16 @@ const Container = styled.div`
   display: flex;
 `;
 
-export const ProfileLayoutUI = { BackgroundGlass, Container };
+const Content = styled.div`
+  height: 90%;
+  width: 90%;
+  display: flex;
+  gap: 50px;
+
+  @media (max-width: 1366px) {
+    gap: 30px;
+    width: 95%;
+  }
+`;
+
+export const ProfileLayoutUI = { BackgroundGlass, Container, Content };

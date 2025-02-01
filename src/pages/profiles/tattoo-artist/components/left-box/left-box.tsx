@@ -1,14 +1,13 @@
 import { useState } from "react";
 import SelectTab from "../../../../../components/sidebar/select-tab";
 import { SchedulingTimes, TattooArtist } from "../../../../../infra/tattoo-artist/tattoo-artist.type";
-import { TattooArtistProfileComponentsUI } from "../styles";
 import { SchedulingTime } from "./scheduling-times";
-
-const { Container } = TattooArtistProfileComponentsUI;
+import { TattooArtistLeftBoxUI } from "./styles";
 
 export interface ILeftBox {
   artist: TattooArtist | null;
   content: string;
+  changeTab?: (tabSelected: string) => void;
 }
 
 export const LeftBox = (props: ILeftBox) => {
@@ -37,10 +36,11 @@ export const LeftBox = (props: ILeftBox) => {
 
   const onClick = (value: string) => {
     setTabSelect(value);
+    if (props.changeTab) props.changeTab(value);
   };
 
   return (
-    <div className="flex flex-col items-center gap-5 w-full h-full">
+    <TattooArtistLeftBoxUI.Container className="flex flex-col items-center gap-5 w-full h-full">
       <div style={{ background: "#8d8d8d", height: "180px", width: "180px", borderRadius: "50%", overflow: "hidden" }}>
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaDn4pdIrIiSa0yJAIlDj4aHIOEpQbbYinYg&s"
@@ -54,7 +54,7 @@ export const LeftBox = (props: ILeftBox) => {
         <p style={{ fontSize: "18px", fontWeight: "normal" }}>@{props.artist?.name.split(" ")[0]}</p>
       </div>
 
-      <div className="w-full py-0 px-3 flex flex-col justify-start gap-3">
+      <div className="w-full py-0 px-3 flex flex-col justify-start gap-1">
         <SelectTab style={schedulings(false)} blocked label="Agendamentos" />
         <SelectTab style={popularyJobs(true)} label="Trabalhos Populares" />
         <SelectTab style={feedbacks(true)} blocked label="Feedbacks" />
@@ -71,6 +71,6 @@ export const LeftBox = (props: ILeftBox) => {
         <SchedulingTime day="SEX:" hours={getScheduling(artist?.schedulings.friday)} />
         <SchedulingTime day="SAB:" hours={getScheduling(artist?.schedulings.saturday)} />
       </div>
-    </div>
+    </TattooArtistLeftBoxUI.Container>
   );
 };
