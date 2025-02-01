@@ -1,23 +1,17 @@
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import { Flex } from "antd";
-import { useNavigate } from "react-router-dom";
+import { LoadingOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
+import { Flex, Spin } from "antd";
 import { ButtonComponent } from "../../../../components/button/button";
 import { FormUI } from "../../../../components/form";
-import { AuthGateway } from "../../../../infra/auth/auth.gateway";
+import { useSignIn } from "../../../../hooks/auth/sign-in";
 import { ILoginCredentials } from "./form.interfaces";
 import { LOGIN_FORM_RULES } from "./form.rules";
 import { LoginFormUI } from "./styles";
 
 export default function LoginForm() {
-  const navigate = useNavigate();
+  const { mutate, isPending } = useSignIn();
 
-  const onFinish = async (credentials: ILoginCredentials) => {
-    try {
-      const logged = await AuthGateway.login(credentials);
-      if (logged) navigate("/home");
-    } catch (error) {
-      console.log("Open notification");
-    }
+  const onFinish = (credentials: ILoginCredentials) => {
+    mutate(credentials);
   };
 
   return (
@@ -55,7 +49,13 @@ export default function LoginForm() {
 
         <FormUI.Item>
           <ButtonComponent style={{ height: "60px", width: "100%" }} className="hover:border-2" type="submit">
-            Entrar
+            {isPending ? (
+              <div className="w-full h-full flex justify-center items-center">
+                <Spin indicator={<LoadingOutlined spin />} size="large" style={{ color: "#734930" }} />
+              </div>
+            ) : (
+              "Entrar"
+            )}
           </ButtonComponent>
           <br></br>
           ou <a href="">Cadastre-se</a>
