@@ -3,7 +3,7 @@ import SelectTab from "../../../../../components/sidebar/select-tab";
 import { User } from "../../../../../infra/users/user.type";
 
 export interface ILeftBox {
-  profileInfo: User | null;
+  profileInfo: User | undefined;
 }
 
 export const LeftBox = (props: ILeftBox) => {
