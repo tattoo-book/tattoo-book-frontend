@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { TattooCard } from "../../../../../../components/card/card";
 import { Loading } from "../../../../../../components/loading";
-import { useListTattos } from "../../../../../../hooks/tattoo-artist/list-tattoos";
+import { useListTattoos } from "../../../../../../hooks/tattoos/list-tattoos";
 
 const TattooListContainer = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const TattooListContainer = styled.div`
 `;
 
 export function TattooList() {
-  const { isLoading, data, error } = useListTattos();
+  const { isLoading, data, error } = useListTattoos();
 
   if (isLoading) return <Loading />;
 

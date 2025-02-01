@@ -5,7 +5,8 @@ export function useListTattoos() {
   return useQuery({
     queryKey: ["tattoos"],
     queryFn: async () => {
-      return await TattooGateway.list();
+      const tattoos = await TattooGateway.list();
+      return [...tattoos, ...tattoos, ...tattoos];
     },
   });
 }
