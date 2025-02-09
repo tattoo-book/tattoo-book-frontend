@@ -7,20 +7,30 @@
 @tailwind components;
 
 :root {
-    /* Luxury */
-    --luxury-black: #000000;
-    --luxury-dark-grey: #252626;
-    --luxury-red: #991a00;
-    --luxury-light-grey: #dcdcdc;
-    --luxury-white: #ffffff;
-
     /* Elegance */
     --elegance-dark-brown: #734930;
     --elegance-brown: #bf8a6b;
     --elegance-light-brown: #d9c6ba;
-    /* --elegance-off-white: #f2eeeb; */
     --elegance-off-white: #f2f2f2;
     --elegance-black: #0d0d0d;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Fundo da barra */
+::-webkit-scrollbar-track {
+    background: #bdbdbd;
+    border-radius: 8px;
+}
+
+/* Barra em si */
+::-webkit-scrollbar-thumb {
+    background-color: var(--elegance-black);
+    border-radius: 10px;
+    border: 1px solid #bdbdbd
 }
 
 * {
@@ -33,8 +43,9 @@
 body {
     width: 100vw;
     height: 100vh;
-    background: url(../public/background-home.jpg);
+    background: url(/public/background-home.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    overflow-x: hidden;
 }
