@@ -1,13 +1,29 @@
 import { useState } from "react";
 import SelectTab from "../../../../../components/sidebar/select-tab";
+import { SchedulingTimes } from "../../../../../infra/tattoo-artist/tattoo-artist.type";
 import { User } from "../../../../../infra/users/user.type";
+import { SchedulingTime } from "./scheduling-times";
 
 export interface ILeftBox {
   profileInfo: User | undefined;
 }
 
-export const LeftBox = (props: ILeftBox) => {
+export const TattooArtistUserProfile = (props: ILeftBox) => {
   const [tabSelected, setTabSelect] = useState<string>("favorites");
+
+  const getScheduling = (schedulings: SchedulingTimes[] | undefined) => {
+    let result = "Fechado";
+    if (!schedulings) return "Fechado";
+
+    schedulings.forEach((sche, index) => {
+      if (index == 0) result = sche.start + " as " + sche.end;
+      else result += ", " + sche.start + " as " + sche.end;
+    });
+
+    return result;
+  };
+
+  const onClick = (value: string) => setTabSelect(value);
 
   const teste: React.CSSProperties = { background: "rgb(229 231 235 / var(--tw-bg-opacity, 1))" };
 
@@ -15,8 +31,6 @@ export const LeftBox = (props: ILeftBox) => {
   const myInfo = (blocked: boolean) => (tabSelected == "my-info" && blocked ? teste : { cursor: "default" });
   const horarios = (blocked: boolean) => (tabSelected == "horarios" && blocked ? teste : { cursor: "default" });
   const historico = (blocked: boolean) => (tabSelected == "historico" && blocked ? teste : { cursor: "default" });
-
-  const onClick = (value: string) => setTabSelect(value);
 
   return (
     <div className="flex flex-col items-center gap-10 w-full h-full p-2">
@@ -31,11 +45,26 @@ export const LeftBox = (props: ILeftBox) => {
         <p style={{ fontSize: "18px" }}>{props.profileInfo?.name}</p>
         <p style={{ fontSize: "18px", fontWeight: "normal" }}>@{props.profileInfo?.name.split(" ")[0]}</p>
       </div>
+
       <div className="w-full px-3 py-0 flex flex-col justify-start gap-3">
         <SelectTab style={myInfo(false)} blocked label="Informações do Perfil" />
         <SelectTab onClick={() => onClick("favorites")} style={favorites(true)} label="Meu Favoritos" />
         <SelectTab style={horarios(false)} blocked label="Horarios Agendados" />
         <SelectTab style={historico(false)} blocked label="Histórico" />
+      </div>
+
+      <div
+        style={{ maxHeight: "26%" }}
+        className="w-full py-0 px-6 flex flex-col justify-center items-start text-base overflow-x-hidden"
+      >
+        <p>Horários de atendimento</p>
+        <SchedulingTime day="DOM:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.sunday)} />
+        <SchedulingTime day="SEG:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.monday)} />
+        <SchedulingTime day="TER:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.tuesday)} />
+        <SchedulingTime day="QUA:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.wednesday)} />
+        <SchedulingTime day="QUI:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.thursday)} />
+        <SchedulingTime day="SEX:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.friday)} />
+        <SchedulingTime day="SAB:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.saturday)} />
       </div>
     </div>
   );
