@@ -1,44 +1,35 @@
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Image } from "antd";
 import { useState } from "react";
+import { TattooGateway } from "../../infra/tattoos/tattoo.gateway";
+import { ITattoo } from "../../infra/tattoos/tattoo.interface";
 import { CardUI } from "./styles";
 
 export interface ICard {
   index: number;
-  content: {
-    id: number;
-    title: string;
-    description: string;
-    imageLink: string;
-    tattooArtistId: number;
-  };
+  tattoo: ITattoo;
   like?: () => void;
   unlike?: () => void;
   style?: React.CSSProperties;
 }
 
 export function TattooCard(props: ICard) {
-  const [liked, setLiked] = useState(true);
+  const [liked, setLiked] = useState(props.tattoo?.liked);
 
-  const like = () => {
-    const likeBody = {
-      id: props.content.id,
-      tattooArtistID: props.content.tattooArtistId,
-    };
+  const like = async (id: number) => {
+    TattooGateway.like(id);
     setLiked(true);
   };
 
-  const unlike = () => {
-    const unlikeBody = {
-      id: props.content.id,
-      tattooArtistID: props.content.tattooArtistId,
-    };
+  const unlike = async (id: number) => {
+    TattooGateway.unLike(id);
     setLiked(false);
   };
+
   const renderHeartOutlined = () => {
     return (
       <HeartOutlined
-        onClick={() => like()}
+        onClick={() => like(props.tattoo.id)}
         className="hover:animate-pulse hover:scale-125 transition-transform duration-200 ease-in-out"
         style={{ fontFamily: "Poppins", fontSize: "18px" }}
       />
@@ -48,7 +39,7 @@ export function TattooCard(props: ICard) {
   const renderHeartFilled = () => {
     return (
       <HeartFilled
-        onClick={() => unlike()}
+        onClick={() => unlike(props.tattoo.id)}
         className="hover:animate-pulse hover:scale-125 transition-transform duration-300 ease-in-out"
         style={{ color: "red", fontFamily: "Poppins", fontSize: "18px" }}
       />
@@ -66,7 +57,7 @@ export function TattooCard(props: ICard) {
           borderRadius: "0.75rem 0.75rem 0rem 0rem",
         }}
       >
-        <Image style={{ objectFit: "cover" }} alt={`image-${props.index}`} src={props.content.imageLink} />
+        <Image style={{ objectFit: "cover" }} alt={`image-${props.index}`} src={props.tattoo.imageLink} />
       </div>
       <div
         style={{ background: "#fff", height: "25%", padding: "10px 20px", borderRadius: "0rem 0rem 0.75rem 0.75rem " }}
@@ -83,10 +74,11 @@ export function TattooCard(props: ICard) {
               textOverflow: "ellipsis",
             }}
           >
-            {props.content.title}
+            {props.tattoo.title}
           </h2>
           {liked ? renderHeartFilled() : renderHeartOutlined()}
         </div>
+
         <p
           style={{
             fontFamily: "Poppins",
@@ -97,7 +89,7 @@ export function TattooCard(props: ICard) {
             whiteSpace: "nowrap",
           }}
         >
-          {props.content.description}
+          {props.tattoo.description}
         </p>
       </div>
     </CardUI.Container>

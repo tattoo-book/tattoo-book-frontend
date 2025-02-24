@@ -9,6 +9,7 @@ interface IRigthBox {
 
 export const RigthBox = (props: IRigthBox) => {
   if (props.content == "tattoo-list")
-    return !props.isTattooArtist ? <TattooList tattoos={props.tattooList} /> : <div></div>;
+    return props.isTattooArtist ? <TattooList tattoos={props.tattooList} /> : <div></div>;
+
   return <div></div>;
 };

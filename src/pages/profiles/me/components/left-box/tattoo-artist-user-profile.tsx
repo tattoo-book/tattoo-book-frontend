@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ButtonComponent } from "../../../../../components/button/button";
 import SelectTab from "../../../../../components/sidebar/select-tab";
 import { SchedulingTimes } from "../../../../../infra/tattoo-artist/tattoo-artist.type";
 import { User } from "../../../../../infra/users/user.type";
@@ -29,8 +30,6 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
 
   const favorites = (blocked: boolean) => (tabSelected == "favorites" && blocked ? teste : { cursor: "default" });
   const myInfo = (blocked: boolean) => (tabSelected == "my-info" && blocked ? teste : { cursor: "default" });
-  const horarios = (blocked: boolean) => (tabSelected == "horarios" && blocked ? teste : { cursor: "default" });
-  const historico = (blocked: boolean) => (tabSelected == "historico" && blocked ? teste : { cursor: "default" });
 
   return (
     <div className="flex flex-col items-center gap-10 w-full h-full p-2">
@@ -49,8 +48,8 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
       <div className="w-full px-3 py-0 flex flex-col justify-start gap-3">
         <SelectTab style={myInfo(false)} blocked label="Informações do Perfil" />
         <SelectTab onClick={() => onClick("favorites")} style={favorites(true)} label="Meu Favoritos" />
-        <SelectTab style={horarios(false)} blocked label="Horarios Agendados" />
-        <SelectTab style={historico(false)} blocked label="Histórico" />
+        {/* <SelectTab style={horarios(false)} blocked label="Horarios Agendados" /> */}
+        {/* <SelectTab style={historico(false)} blocked label="Histórico" /> */}
       </div>
 
       <div
@@ -66,6 +65,7 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
         <SchedulingTime day="SEX:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.friday)} />
         <SchedulingTime day="SAB:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.saturday)} />
       </div>
+      <ButtonComponent style={{ height: "50px", textTransform: "capitalize" }}>Adicionar Tatuagem</ButtonComponent>
     </div>
   );
 };

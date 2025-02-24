@@ -17,7 +17,7 @@ export function TattooListFavorits() {
   return (
     <div className="flex gap-6 p-2 flex-wrap overflow-y-scroll">
       {tattoos.map((tattoo, index) => (
-        <TattooCard index={index} content={tattoo} style={{ height: "40%", width: "18%" }} />
+        <TattooCard index={index} tattoo={tattoo} style={{ height: "40%", width: "18%" }} />
       ))}
     </div>
   );

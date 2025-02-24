@@ -1,7 +1,8 @@
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { TattooCard } from "../../../../../../components/card/card";
 import { Loading } from "../../../../../../components/loading";
-import { useListTattoos } from "../../../../../../hooks/tattoos/list-tattoos";
+import { useListTattoosWithLikes } from "../../../../../../hooks/tattoos/list-tattoos-with-likes";
 
 const TattooListContainer = styled.div`
   display: flex;
@@ -11,10 +12,12 @@ const TattooListContainer = styled.div`
 `;
 
 export function TattooList() {
-  const { isLoading, data, error } = useListTattoos();
+  const { id } = useParams();
+
+  const { isLoading, data, error } = useListTattoosWithLikes("2");
 
   if (isLoading) return <Loading />;
-
+  console.log(data);
   return (
     <TattooListContainer className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full">
       {data &&
@@ -22,7 +25,7 @@ export function TattooList() {
           <TattooCard
             key={index}
             index={index}
-            content={tattoo}
+            tattoo={tattoo}
             style={{ maxHeight: "300px", minHeight: "280px", maxWidth: "calc(20% - 24px)", minWidth: "200px" }}
           />
         ))}
