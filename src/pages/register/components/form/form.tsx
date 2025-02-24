@@ -1,22 +1,27 @@
-import { LoadingOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
+import { LoadingOutlined, LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Flex, Spin } from "antd";
 import { Link } from "react-router-dom";
 import { ButtonComponent } from "../../../../components/button/button";
 import { FormUI } from "../../../../components/form";
-import { useSignIn } from "../../../../hooks/auth/sign-in";
-import { ILoginCredentials } from "./form.interfaces";
+import { useRegister } from "../../../../hooks/auth/sign-up";
+import { IRegisterCredentials } from "./form.interfaces";
 import { LOGIN_FORM_RULES } from "./form.rules";
-import { LoginFormUI } from "./styles";
+import { RegisterFormUI } from "./styles";
 
-export default function LoginForm() {
-  const { mutate, isPending } = useSignIn();
+export function RegisterForm() {
+  const { mutate, isPending } = useRegister();
 
-  const onFinish = (credentials: ILoginCredentials) => {
+  const onFinish = (credentials: IRegisterCredentials) => {
+    if (credentials.password != credentials.confirm) {
+      console.log("Senha são diferentes");
+      return;
+    }
+    delete credentials.confirm;
     mutate(credentials);
   };
 
   return (
-    <LoginFormUI.Container>
+    <RegisterFormUI.Container>
       <img
         className="max-h-40"
         src="https://static.wixstatic.com/media/64a834_b970259fd3ed4feeb549de6a89838cca~mv2.png/v1/fill/w_640,h_656,fp_0.49_0.41,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/64a834_b970259fd3ed4feeb549de6a89838cca~mv2.png"
@@ -24,10 +29,13 @@ export default function LoginForm() {
       <FormUI.Form
         className="bg-white"
         name="login"
-        initialValues={{ remember: true }}
+        initialValues={{}}
         style={{ maxWidth: 360, width: "80%" }}
         onFinish={onFinish}
       >
+        <FormUI.Item name="name">
+          <FormUI.Input style={{ height: "60px" }} prefix={<UserOutlined />} placeholder="Digiter seu nome completo" />
+        </FormUI.Item>
         <FormUI.Item name="email" rules={[LOGIN_FORM_RULES.username]}>
           <FormUI.Input style={{ height: "60px" }} prefix={<MailOutlined />} placeholder="Digite seu email" />
         </FormUI.Item>
@@ -39,11 +47,18 @@ export default function LoginForm() {
             placeholder="Digite sua senha"
           />
         </FormUI.Item>
+
+        <FormUI.Item name="confirm" rules={[LOGIN_FORM_RULES.password]}>
+          <FormUI.Input
+            style={{ height: "60px" }}
+            prefix={<LockOutlined />}
+            type="password"
+            placeholder="Confirm sua senha"
+          />
+        </FormUI.Item>
+
         <FormUI.Item>
           <Flex justify="space-between" align="center">
-            <FormUI.Item name="remember" valuePropName="checked" noStyle>
-              <FormUI.Checkbox>Lembre-se de mim</FormUI.Checkbox>
-            </FormUI.Item>
             <a href="">Recuperar senha</a>
           </Flex>
         </FormUI.Item>
@@ -59,9 +74,9 @@ export default function LoginForm() {
             )}
           </ButtonComponent>
           <br></br>
-          ou <Link to={"/register"}>Cadastre-se</Link>
+          ou <Link to={"/login"}>Login</Link>
         </FormUI.Item>
       </FormUI.Form>
-    </LoginFormUI.Container>
+    </RegisterFormUI.Container>
   );
 }
