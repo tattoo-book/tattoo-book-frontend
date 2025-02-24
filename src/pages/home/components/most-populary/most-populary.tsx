@@ -19,7 +19,7 @@ export function MostPopularyTattoos() {
         ) : (
           <Content.CardList>
             {data?.map((card, index) => (
-              <TattooCard index={index} tattoo={card} />
+              <TattooCard key={index} index={index} tattoo={card} />
             ))}
           </Content.CardList>
         )}

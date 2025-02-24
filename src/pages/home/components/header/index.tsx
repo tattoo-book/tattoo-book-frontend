@@ -8,6 +8,11 @@ const { Titulo, SubTitulo } = Content;
 export function HomeHeader() {
   const navigate = useNavigate();
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <Background>
       <BackgroundGlass>
@@ -22,9 +27,9 @@ export function HomeHeader() {
             src="https://static.wixstatic.com/media/64a834_b970259fd3ed4feeb549de6a89838cca~mv2.png/v1/fill/w_640,h_656,fp_0.49_0.41,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/64a834_b970259fd3ed4feeb549de6a89838cca~mv2.png"
           />
           <Header.Nav>
-            <Header.Link>Novidades</Header.Link>
             <Header.Link>Sobre nos</Header.Link>
             <Header.Link onClick={() => navigate("/profiles/me")}>Profile</Header.Link>
+            <Header.Link onClick={() => logout()}>Sair</Header.Link>
           </Header.Nav>
         </Header.Container>
 
