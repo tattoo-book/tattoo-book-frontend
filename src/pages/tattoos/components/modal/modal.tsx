@@ -1,5 +1,6 @@
 import { Image, Modal } from "antd";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { LikedIcon } from "../../../../components/icons/liked.icon";
 import { UnLikedIcon } from "../../../../components/icons/unliked.icon";
 import { TattooActions } from "../../../../infra/tattoos/tattoo.actions";
@@ -33,20 +34,16 @@ export const TattooModal = (props: ITattooCard) => {
     setLiked(false);
   };
 
-  const icon = liked ? <LikedIcon onClick={() => unlike()} /> : <UnLikedIcon onClick={() => like()} />;
-
   return (
     <Modal title={tattoo?.title} centered open={showModal} footer={[]} onCancel={() => close()}>
       <div style={{ display: "flex" }}>
-        <div style={{ width: "50%" }}>
+        <div style={{ width: "30%" }}>
           <Image src={tattoo?.imageLink} style={{ maxHeight: "150px", maxWidth: "150px" }} />
-          <div>
+          <div style={{ display: "flex", gap: "20px" }}>
             <p>{tattoo?.description}</p>
-            <p>{icon}</p>
+            <p>{liked ? <LikedIcon onClick={() => unlike()} /> : <UnLikedIcon onClick={() => like()} />}</p>
           </div>
-        </div>
-        <div style={{ width: "50%" }}>
-          <p>{tattoo?.tattooArtist.name}</p>
+          <Link to={`/profiles/tattoo-artist/${props.tattoo?.tattooArtistId}`}> ver tatuador</Link>
         </div>
       </div>
       <TattooModalUI.Modal.Footer></TattooModalUI.Modal.Footer>

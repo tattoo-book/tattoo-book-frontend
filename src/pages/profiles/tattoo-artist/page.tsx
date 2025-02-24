@@ -23,7 +23,7 @@ export default function TattooArtistPage() {
   return (
     <ProfilesLayout
       leftContent={<LeftBox artist={tattooArtist} content={rigthBoxContent} changeTab={changeTab} />}
-      rigthContent={<RigthBox content={rigthBoxContent} />}
+      rigthContent={<RigthBox content={rigthBoxContent} id={Id} />}
     />
   );
 }

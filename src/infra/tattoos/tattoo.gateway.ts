@@ -11,32 +11,7 @@ class TattooGatewayImplement {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       params: { ...params },
-    })
-      .then((res: any) => {
-        return res.data;
-      })
-      .catch((err: any) => {
-        console.error("ERROR: ", err);
-        throw err;
-      });
-  }
-
-  async listWithLikes(tattooArtistId: string, params?: ParamsDTO): Promise<ITattoo[]> {
-    return await Gateway.request<Data<ITattoo[]>>({
-      method: "GET",
-      url: `/tattoos/${tattooArtistId}/likeds`,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      params: { ...params },
-    })
-      .then((res: any) => {
-        return res.data;
-      })
-      .catch((err: any) => {
-        console.error("ERROR: ", err);
-        throw err;
-      });
+    }).then((res: any) => res.data);
   }
 
   async like(tattooId: number) {
@@ -46,14 +21,7 @@ class TattooGatewayImplement {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    })
-      .then((res: any) => {
-        return res.data;
-      })
-      .catch((err: any) => {
-        console.error("ERROR: ", err);
-        throw err;
-      });
+    }).then((res: any) => res.data);
   }
 
   async unLike(tattooId: number) {
@@ -63,14 +31,7 @@ class TattooGatewayImplement {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    })
-      .then((res: any) => {
-        return res.data;
-      })
-      .catch((err: any) => {
-        console.error("ERROR: ", err);
-        throw err;
-      });
+    }).then((res: any) => res.data);
   }
 }
 

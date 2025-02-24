@@ -65,7 +65,7 @@ export default function TattooPageList() {
             placeholder="Procure por tatuador, tatuagens, estilo ... "
           />
 
-          <Input.Button onClick={() => console.log("Click")}>
+          <Input.Button onClick={() => refetch()}>
             <SearchOutlined style={{ color: "#bf8a6b", fontSize: "22px" }} />
           </Input.Button>
         </div>
