@@ -16,7 +16,7 @@ export default function ProfilePageMe() {
   return (
     <ProfilesLayout
       leftContent={
-        data?.tattooArtist ? <TattooArtistUserProfile profileInfo={data} /> : <UserProfile profileInfo={data} />
+        !data?.tattooArtist ? <TattooArtistUserProfile profileInfo={data} /> : <UserProfile profileInfo={data} />
       }
       rigthContent={
         <RigthBox

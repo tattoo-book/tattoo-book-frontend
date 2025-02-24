@@ -1,7 +1,7 @@
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Image } from "antd";
 import { useState } from "react";
-import { TattooGateway } from "../../infra/tattoos/tattoo.gateway";
+import { TattooActions } from "../../infra/tattoos/tattoo.actions";
 import { ITattoo } from "../../infra/tattoos/tattoo.interface";
 import { CardUI } from "./styles";
 
@@ -17,12 +17,12 @@ export function TattooCard(props: ICard) {
   const [liked, setLiked] = useState(props.tattoo?.liked);
 
   const like = async (id: number) => {
-    TattooGateway.like(id);
+    TattooActions.like(id);
     setLiked(true);
   };
 
   const unlike = async (id: number) => {
-    TattooGateway.unLike(id);
+    TattooActions.unlike(id);
     setLiked(false);
   };
 

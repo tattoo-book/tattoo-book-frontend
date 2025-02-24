@@ -47,9 +47,7 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
 
       <div className="w-full px-3 py-0 flex flex-col justify-start gap-3">
         <SelectTab style={myInfo(false)} blocked label="Informações do Perfil" />
-        <SelectTab onClick={() => onClick("favorites")} style={favorites(true)} label="Meu Favoritos" />
-        {/* <SelectTab style={horarios(false)} blocked label="Horarios Agendados" /> */}
-        {/* <SelectTab style={historico(false)} blocked label="Histórico" /> */}
+        <SelectTab onClick={() => onClick("favorites")} style={favorites(true)} label="Minhas Tatuagens" />
       </div>
 
       <div
