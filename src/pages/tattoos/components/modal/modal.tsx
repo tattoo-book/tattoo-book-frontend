@@ -1,7 +1,8 @@
-import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Image, Modal } from "antd";
 import { useState } from "react";
-import { TattooGateway } from "../../../../infra/tattoos/tattoo.gateway";
+import { LikedIcon } from "../../../../components/icons/liked.icon";
+import { UnLikedIcon } from "../../../../components/icons/unliked.icon";
+import { TattooActions } from "../../../../infra/tattoos/tattoo.actions";
 import { ITattoo } from "../../../../infra/tattoos/tattoo.interface";
 import { TattooModalUI } from "./styles";
 
@@ -22,35 +23,17 @@ export const TattooModal = (props: ITattooCard) => {
   const [liked, setLiked] = useState(props.tattoo?.liked);
   const tattoo = props.tattoo;
 
-  const like = async (id: number) => {
-    TattooGateway.like(id);
+  const like = () => {
+    TattooActions.like(tattoo?.id!);
     setLiked(true);
   };
 
-  const unlike = async (id: number) => {
-    TattooGateway.unLike(id);
+  const unlike = () => {
+    TattooActions.unlike(tattoo?.id!);
     setLiked(false);
   };
 
-  const renderHeartOutlined = () => {
-    return (
-      <HeartOutlined
-        onClick={() => like(tattoo?.id!)}
-        className="hover:animate-pulse hover:scale-125 transition-transform duration-200 ease-in-out"
-        style={{ fontFamily: "Poppins", fontSize: "18px" }}
-      />
-    );
-  };
-
-  const renderHeartFilled = () => {
-    return (
-      <HeartFilled
-        onClick={() => unlike(tattoo?.id!)}
-        className="hover:animate-pulse hover:scale-125 transition-transform duration-300 ease-in-out"
-        style={{ color: "red", fontFamily: "Poppins", fontSize: "18px" }}
-      />
-    );
-  };
+  const icon = liked ? <LikedIcon onClick={() => unlike()} /> : <UnLikedIcon onClick={() => like()} />;
 
   return (
     <Modal title={tattoo?.title} centered open={showModal} footer={[]} onCancel={() => close()}>
@@ -59,7 +42,7 @@ export const TattooModal = (props: ITattooCard) => {
           <Image src={tattoo?.imageLink} style={{ maxHeight: "150px", maxWidth: "150px" }} />
           <div>
             <p>{tattoo?.description}</p>
-            <p>{liked ? renderHeartFilled() : renderHeartOutlined()}</p>
+            <p>{icon}</p>
           </div>
         </div>
         <div style={{ width: "50%" }}>

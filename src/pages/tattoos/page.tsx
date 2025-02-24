@@ -35,6 +35,18 @@ export default function TattooPageList() {
     setShowModal(false);
   };
 
+  const content = isLoading ? (
+    <Loading />
+  ) : (
+    <List.Container>
+      {tattoos?.map((tattoo, index) => (
+        <List.ImageContainer key={index}>
+          <List.Image src={tattoo.imageLink} onClick={() => openModal(index)} />
+        </List.ImageContainer>
+      ))}
+    </List.Container>
+  );
+
   /* Use Effects */
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => refetch(), 500);
@@ -59,17 +71,7 @@ export default function TattooPageList() {
         </div>
       </Input.Container>
 
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <List.Container>
-          {tattoos?.map((tattoo, index) => (
-            <List.ImageContainer key={index}>
-              <List.Image src={tattoo.imageLink} onClick={() => openModal(index)} />
-            </List.ImageContainer>
-          ))}
-        </List.Container>
-      )}
+      {content}
     </Background>
   );
 }
