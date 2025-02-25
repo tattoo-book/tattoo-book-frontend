@@ -7,6 +7,7 @@ import { SchedulingTime } from "./scheduling-times";
 
 export interface ILeftBox {
   profileInfo: User | undefined;
+  openModal: () => void;
 }
 
 export const TattooArtistUserProfile = (props: ILeftBox) => {
@@ -63,7 +64,10 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
         <SchedulingTime day="SEX:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.friday)} />
         <SchedulingTime day="SAB:" hours={getScheduling(props.profileInfo?.tattooArtist?.schedulings.saturday)} />
       </div>
-      <ButtonComponent style={{ height: "50px", width: "90%", textTransform: "capitalize" }}>
+      <ButtonComponent
+        onClick={() => props?.openModal()}
+        style={{ height: "50px", width: "90%", textTransform: "capitalize" }}
+      >
         Adicionar Tatuagem
       </ButtonComponent>
     </div>

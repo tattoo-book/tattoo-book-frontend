@@ -21,9 +21,11 @@ export default function TattooArtistPage() {
   const changeTab = (tabSelected: string) => setRigthBoxContent(tabSelected);
 
   return (
-    <ProfilesLayout
-      leftContent={<LeftBox artist={tattooArtist} content={rigthBoxContent} changeTab={changeTab} />}
-      rigthContent={<RigthBox content={rigthBoxContent} id={Id} />}
-    />
+    <>
+      <ProfilesLayout
+        leftContent={<LeftBox artist={tattooArtist} content={rigthBoxContent} changeTab={changeTab} />}
+        rigthContent={<RigthBox content={rigthBoxContent} id={Id} />}
+      />
+    </>
   );
 }

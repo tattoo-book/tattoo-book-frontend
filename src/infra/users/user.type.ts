@@ -5,4 +5,5 @@ export type User = {
   name: string;
   email: string;
   tattooArtist: TattooArtist;
+  tattoos?: any[];
 };

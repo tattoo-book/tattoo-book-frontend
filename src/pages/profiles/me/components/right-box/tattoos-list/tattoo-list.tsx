@@ -9,7 +9,7 @@ export function TattooList(props: ITattooList) {
   return (
     <div className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full">
       {props.tattoos?.map((tattoo, index) => (
-        <TattooCard index={index} tattoo={tattoo} style={{ height: "40%", width: "18%" }} />
+        <TattooCard key={index} index={index} tattoo={tattoo} style={{ height: "40%", width: "18%" }} />
       ))}
     </div>
   );

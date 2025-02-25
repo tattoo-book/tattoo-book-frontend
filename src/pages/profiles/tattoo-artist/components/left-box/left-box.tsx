@@ -8,6 +8,7 @@ export interface ILeftBox {
   artist: TattooArtist | null;
   content: string;
   changeTab?: (tabSelected: string) => void;
+  openModal?: () => void;
 }
 
 export const LeftBox = (props: ILeftBox) => {
