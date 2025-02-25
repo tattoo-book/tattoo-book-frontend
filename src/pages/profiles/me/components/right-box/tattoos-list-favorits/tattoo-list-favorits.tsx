@@ -5,7 +5,7 @@ import { User } from "../../../../../../infra/users/user.type";
 
 interface ITattooList {
   tattoos: ITattoo[] | undefined;
-  refetch?: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>;
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>;
 }
 
 export function TattooListFavorits(props: ITattooList) {

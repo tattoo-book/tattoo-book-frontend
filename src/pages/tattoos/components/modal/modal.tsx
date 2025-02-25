@@ -37,13 +37,21 @@ export const TattooModal = (props: ITattooCard) => {
   return (
     <Modal title={tattoo?.title} centered open={showModal} footer={[]} onCancel={() => close()}>
       <div style={{ display: "flex" }}>
-        <div style={{ width: "30%" }}>
-          <Image src={tattoo?.imageLink} style={{ maxHeight: "150px", maxWidth: "150px" }} />
-          <div style={{ display: "flex", gap: "20px" }}>
-            <p>{tattoo?.description}</p>
+        <div style={{ width: "100%" }}>
+          <Image src={tattoo?.imageLink} style={{ height: "250px", width: "100%" }} />
+          <div
+            style={{
+              display: "flex",
+              gap: "20px",
+              width: "80%",
+              alignItems: "center",
+              justifyContent: "flex-start",
+            }}
+          >
+            {/* <p>{tattoo?.description}</p> */}
+            <Link to={`/profiles/tattoo-artist/${props.tattoo?.tattooArtistId}`}> ver tatuador</Link>
             <p>{liked ? <LikedIcon onClick={() => unlike()} /> : <UnLikedIcon onClick={() => like()} />}</p>
           </div>
-          <Link to={`/profiles/tattoo-artist/${props.tattoo?.tattooArtistId}`}> ver tatuador</Link>
         </div>
       </div>
       <TattooModalUI.Modal.Footer></TattooModalUI.Modal.Footer>

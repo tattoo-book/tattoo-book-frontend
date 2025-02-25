@@ -9,14 +9,15 @@ interface IRigthBox {
   tattooList: ITattoo[] | undefined;
   favorits: ITattoo[] | undefined;
   isTattooArtist: boolean;
-  refetch?: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>;
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>;
 }
 
 export const RigthBox = (props: IRigthBox) => {
-  console.log("CONTENT", props.content);
   if (props.content == "tattoo-list") return <TattooList refetch={props.refetch} tattoos={props.tattooList} />;
   if (props.content == "favorites") {
-    return <TattooListFavorits tattoos={props.favorits?.filter((Item) => Item.liked == true)} />;
+    return (
+      <TattooListFavorits refetch={props.refetch} tattoos={props.favorits?.filter((Item) => Item.liked == true)} />
+    );
   }
 
   return <div></div>;

@@ -16,7 +16,7 @@ export interface ICard {
   unlike?: () => void;
   style?: React.CSSProperties;
   editable?: boolean;
-  refetch?: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>;
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>;
 }
 
 export function TattooCard(props: ICard) {
@@ -24,23 +24,21 @@ export function TattooCard(props: ICard) {
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
+  const closeModal = async () => {
     setShowModal(false);
-    if (props.refetch) props.refetch();
+    await props.refetch();
   };
 
   const like = async (id: number) => {
     TattooActions.like(id);
     setLiked(true);
+    await props.refetch();
   };
 
   const unlike = async (id: number) => {
     TattooActions.unlike(id);
     setLiked(false);
+    await props.refetch();
   };
 
   const renderHeartOutlined = () => {
@@ -65,7 +63,7 @@ export function TattooCard(props: ICard) {
 
   const deleteTattoo = async () => {
     await TattooGateway.delete(props.tattoo.id);
-    if (props.refetch) props.refetch();
+    await props.refetch();
   };
 
   return (
