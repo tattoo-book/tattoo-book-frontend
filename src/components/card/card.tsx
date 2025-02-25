@@ -1,8 +1,11 @@
-import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { DeleteOutlined, HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import { Image } from "antd";
 import { useState } from "react";
 import { TattooActions } from "../../infra/tattoos/tattoo.actions";
+import { TattooGateway } from "../../infra/tattoos/tattoo.gateway";
 import { ITattoo } from "../../infra/tattoos/tattoo.interface";
+import { User } from "../../infra/users/user.type";
 import { CardUI } from "./styles";
 
 export interface ICard {
@@ -11,6 +14,8 @@ export interface ICard {
   like?: () => void;
   unlike?: () => void;
   style?: React.CSSProperties;
+  editable?: boolean;
+  refetch?: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>;
 }
 
 export function TattooCard(props: ICard) {
@@ -44,6 +49,11 @@ export function TattooCard(props: ICard) {
         style={{ color: "red", fontFamily: "Poppins", fontSize: "18px" }}
       />
     );
+  };
+
+  const deleteTattoo = async () => {
+    await TattooGateway.delete(props.tattoo.id);
+    if (props.refetch) props.refetch();
   };
 
   return (
@@ -87,9 +97,12 @@ export function TattooCard(props: ICard) {
             textOverflow: "ellipsis",
             maxWidth: "100%",
             whiteSpace: "nowrap",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
           {props.tattoo.description}
+          {props.editable && <DeleteOutlined onClick={() => deleteTattoo()} />}
         </p>
       </div>
     </CardUI.Container>

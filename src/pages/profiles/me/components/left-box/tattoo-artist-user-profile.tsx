@@ -12,7 +12,7 @@ export interface ILeftBox {
 }
 
 export const TattooArtistUserProfile = (props: ILeftBox) => {
-  const [tabSelected, setTabSelect] = useState<string>("tattoo-list");
+  const [tabSelected, setTabSelect] = useState<string>("favorites");
 
   const getScheduling = (schedulings: SchedulingTimes[] | undefined) => {
     let result = "Fechado";

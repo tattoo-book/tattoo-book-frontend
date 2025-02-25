@@ -8,10 +8,10 @@ import { ModalRegisterTattoo } from "./components/modal/modal";
 import { RigthBox } from "./components/right-box/right-box";
 
 export default function ProfilePageMe() {
-  const [rigthBoxContent, setRigthBoxContent] = useState<string>("tattoo-list");
+  const [rigthBoxContent, setRigthBoxContent] = useState<string>("favorites");
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const { isLoading, error, data } = useGetInfoMe();
+  const { isLoading, error, data, refetch } = useGetInfoMe();
   if (isLoading) return <Loading />;
   if (error) return <div>Failed on get info me</div>;
 
@@ -42,6 +42,7 @@ export default function ProfilePageMe() {
         rigthContent={
           <RigthBox
             content={rigthBoxContent}
+            refetch={refetch}
             tattooList={data?.tattooArtist ? data?.tattooArtist.tattoos : data?.tattoos}
             favorits={data?.tattoos}
             isTattooArtist={data?.tattooArtist ? true : false}
