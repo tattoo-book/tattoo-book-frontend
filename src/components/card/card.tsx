@@ -1,4 +1,4 @@
-import { DeleteOutlined, HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import { Image } from "antd";
 import { useState } from "react";
@@ -6,6 +6,7 @@ import { TattooActions } from "../../infra/tattoos/tattoo.actions";
 import { TattooGateway } from "../../infra/tattoos/tattoo.gateway";
 import { ITattoo } from "../../infra/tattoos/tattoo.interface";
 import { User } from "../../infra/users/user.type";
+import { ModalUpdateTattoo } from "./components/modal/modal";
 import { CardUI } from "./styles";
 
 export interface ICard {
@@ -20,6 +21,17 @@ export interface ICard {
 
 export function TattooCard(props: ICard) {
   const [liked, setLiked] = useState(props.tattoo?.liked);
+
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    if (props.refetch) props.refetch();
+  };
 
   const like = async (id: number) => {
     TattooActions.like(id);
@@ -58,6 +70,7 @@ export function TattooCard(props: ICard) {
 
   return (
     <CardUI.Container style={{ ...props.style }}>
+      <ModalUpdateTattoo showModal={showModal} close={closeModal} defaultValues={props.tattoo} />
       <div
         style={{
           width: "100%",
@@ -89,21 +102,24 @@ export function TattooCard(props: ICard) {
           {liked ? renderHeartFilled() : renderHeartOutlined()}
         </div>
 
-        <p
-          style={{
-            fontFamily: "Poppins",
-            fontSize: "14px",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            maxWidth: "100%",
-            whiteSpace: "nowrap",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          {props.tattoo.description}
-          {props.editable && <DeleteOutlined onClick={() => deleteTattoo()} />}
-        </p>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
+          <p
+            style={{
+              fontFamily: "Poppins",
+              fontSize: "14px",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              maxWidth: "100%",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {props.tattoo.description}
+          </p>
+          <div style={{ display: "flex", gap: "10px" }}>
+            {props.editable && <DeleteOutlined onClick={() => deleteTattoo()} />}
+            {props.editable && <EditOutlined onClick={() => setShowModal(true)} />}
+          </div>
+        </div>
       </div>
     </CardUI.Container>
   );
