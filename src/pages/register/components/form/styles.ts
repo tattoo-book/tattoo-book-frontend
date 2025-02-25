@@ -13,4 +13,4 @@ const FormContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-export const LoginFormUI = { Container: FormContainer };
+export const RegisterFormUI = { Container: FormContainer };

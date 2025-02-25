@@ -1,4 +1,4 @@
-import { Gateway } from "../../architecture/gateway/Gateway";
+import { Gateway } from "../../core/gateway/Gateway";
 import { Data } from "../../tattoos/tattoo.interface";
 import { TattooArtist } from "../tattoo-artist.type";
 import { TattooArtistGatewayProps } from "./tattoo-artist.type";

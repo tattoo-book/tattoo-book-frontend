@@ -1,3 +1,5 @@
+import { ITattoo } from "../tattoos/tattoo.interface";
+
 export type SchedulingTimes = {
   start: string;
   end: string;
@@ -18,4 +20,5 @@ export type TattooArtist = {
   userId: number;
   name: string;
   schedulings: SchedulingDTO;
+  tattoos: ITattoo[];
 };

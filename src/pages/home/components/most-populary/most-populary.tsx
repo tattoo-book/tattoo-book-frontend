@@ -6,7 +6,7 @@ import { MostPopularuTattoosUI } from "./styles";
 const { Background, Titulo, Content } = MostPopularuTattoosUI;
 
 export function MostPopularyTattoos() {
-  const { isLoading, data } = useListTattoos({ order: { popularity: "desc" }, pageSize: 4 });
+  const { isLoading, data } = useListTattoos({ includes: ["likes"], order: { popularity: "desc" }, pageSize: 4 });
 
   return (
     <Background>
@@ -19,7 +19,7 @@ export function MostPopularyTattoos() {
         ) : (
           <Content.CardList>
             {data?.map((card, index) => (
-              <TattooCard index={index} card={card} />
+              <TattooCard key={index} index={index} tattoo={card} />
             ))}
           </Content.CardList>
         )}

@@ -1,3 +1,5 @@
+import { TattooArtist } from "../tattoo-artist/tattoo-artist.type";
+
 export interface ITattoo {
   id: number;
   title: string;
@@ -8,6 +10,8 @@ export interface ITattoo {
   image: Buffer;
   imageBase64: string;
   imageLink: string;
+  liked?: boolean;
+  tattooArtist: TattooArtist;
 }
 
 export interface Data<T> {

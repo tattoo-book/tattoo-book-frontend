@@ -6,7 +6,7 @@ export interface ILeftBox {
   profileInfo: User | undefined;
 }
 
-export const LeftBox = (props: ILeftBox) => {
+export const UserProfile = (props: ILeftBox) => {
   const [tabSelected, setTabSelect] = useState<string>("favorites");
 
   const teste: React.CSSProperties = { background: "rgb(229 231 235 / var(--tw-bg-opacity, 1))" };

@@ -1,8 +1,4 @@
-import {
-  InstagramOutlined,
-  TikTokOutlined,
-  XOutlined,
-} from "@ant-design/icons";
+import { InstagramOutlined, TikTokOutlined, XOutlined } from "@ant-design/icons";
 import { HomeFooterUI } from "./styles";
 
 const { Background, Footer } = HomeFooterUI;
@@ -38,6 +34,7 @@ export default function HomeFooter() {
           <Footer.Columns>
             <Footer.Link>Poticas de Privacidade</Footer.Link>
             <Footer.Link>Contato</Footer.Link>
+            <Footer.Link href="https://github.com/tattoo-book">Github</Footer.Link>
           </Footer.Columns>
         </div>
       </Footer.Container>

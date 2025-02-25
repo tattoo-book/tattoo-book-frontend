@@ -10,19 +10,22 @@ const TattooListContainer = styled.div`
   overflow-y: scroll;
 `;
 
-export function TattooList() {
-  const { isLoading, data, error } = useListTattoos();
+export function TattooList({ id }: { id: string | undefined }) {
+  const { isLoading, data } = useListTattoos({
+    includes: ["likes", "tattooArtist"],
+    filter: { tattooArtistId: id ? [+id] : [2] },
+  });
 
   if (isLoading) return <Loading />;
 
   return (
     <TattooListContainer className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full">
       {data &&
-        [...data, ...data, ...data]?.map((tattoo, index) => (
+        data?.map((tattoo, index) => (
           <TattooCard
             key={index}
             index={index}
-            content={tattoo}
+            tattoo={tattoo}
             style={{ maxHeight: "300px", minHeight: "280px", maxWidth: "calc(20% - 24px)", minWidth: "200px" }}
           />
         ))}

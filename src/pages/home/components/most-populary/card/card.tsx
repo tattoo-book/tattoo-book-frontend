@@ -2,10 +2,21 @@ import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Card, Image } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { TattooActions } from "../../../../../infra/tattoos/tattoo.actions";
 import { ITattooCard } from "../most-populary.type";
 
 export const TattooCard = (props: ITattooCard) => {
-  const [liked, setLiked] = useState(true);
+  const [liked, setLiked] = useState(props.tattoo.liked);
+
+  const like = async (id: number) => {
+    TattooActions.like(id);
+    setLiked(true);
+  };
+
+  const unlike = async (id: number) => {
+    TattooActions.unlike(id);
+    setLiked(false);
+  };
 
   return (
     <Card
@@ -27,7 +38,7 @@ export const TattooCard = (props: ITattooCard) => {
               height: 380,
               borderRadius: "0.75rem 0.75rem 0rem 0rem",
             }}
-            src={props.card.imageLink}
+            src={props.tattoo.imageLink}
           />
         </div>
       }
@@ -35,17 +46,17 @@ export const TattooCard = (props: ITattooCard) => {
       <div>
         <div className="flex justify-between">
           <h2 className="font-semibold" style={{ fontSize: "22px", whiteSpace: "nowrap" }}>
-            {`${props.card.title}`}
+            {`${props.tattoo.title}`}
           </h2>
           {liked ? (
             <HeartFilled
-              onClick={() => setLiked(false)}
+              onClick={() => unlike(props.tattoo.id)}
               className="hover:animate-pulse hover:scale-110 transition-transform duration- heartbeat 0.6s infinite ease-in-out"
               style={{ color: "red", fontFamily: "Poppins", fontSize: "22px" }}
             />
           ) : (
             <HeartOutlined
-              onClick={() => setLiked(true)}
+              onClick={() => like(props.tattoo.id)}
               className="hover:animate-pulse hover:scale-110 transition-transform duration-300 heartbeat 0.6s infinite ease-in-out"
               style={{ fontFamily: "Poppins", fontSize: "22px" }}
             />
@@ -56,9 +67,9 @@ export const TattooCard = (props: ITattooCard) => {
             className="size-4 whitespace-nowrap text-ellipsis overflow-hidden"
             style={{ fontFamily: "Poppins", width: "70%" }}
           >
-            {`${props.card.description}`}
+            {`${props.tattoo.description}`}
           </p>
-          <Link to={`/profiles/tattoo-artist/${props.card.tattooArtistId}`}> ver tatuador</Link>
+          <Link to={`/profiles/tattoo-artist/${props.tattoo.tattooArtistId}`}> ver tatuador</Link>
         </div>
       </div>
     </Card>

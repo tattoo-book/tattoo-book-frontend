@@ -20,7 +20,7 @@ const ListContainer = styled.div`
   margin-top: 20vh;
   width: 70%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 15px;
   grid-auto-rows: auto; /* Ajusta automaticamente a altura das linhas */
   padding-right: 2rem;
@@ -34,7 +34,7 @@ const ListImageContainer = styled.div`
 
 const ListImage = styled.img`
   width: 100%;
-  height: auto;
+  height: 250px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Sombra */
   transition: transform 0.3s ease;

@@ -1,4 +1,5 @@
-import { Gateway } from "../architecture/gateway/Gateway";
+import { IRegisterCredentials } from "../../pages/register/components/form/form.interfaces";
+import { Gateway } from "../core/gateway/Gateway";
 
 interface ILoginCredentials {
   email: string;
@@ -6,6 +7,21 @@ interface ILoginCredentials {
 }
 
 export class AuthGatewayImplemented {
+  async register(credentials: IRegisterCredentials) {
+    return await Gateway.request<{ data: any }>({
+      method: "POST",
+      data: credentials,
+      url: "/users",
+    })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.error("ERROR: ", err);
+        throw err;
+      });
+  }
+
   async login(credentials: ILoginCredentials) {
     return await Gateway.request<{ data: any }>({
       method: "POST",

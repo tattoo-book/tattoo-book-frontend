@@ -9,23 +9,21 @@ import { TattooPageListUI } from "./styles";
 const { Background, List, Input } = TattooPageListUI;
 
 export default function TattooPageList() {
+  /* Variables */
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalCard, setModalCard] = useState<ITattoo | null>(null);
   const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
 
-  const { isLoading, data: tattoos, refetch } = useListTattoos({ search: { searchValues: searchTerm } });
+  const {
+    isLoading,
+    data: tattoos,
+    refetch,
+  } = useListTattoos({ includes: ["likes", "tattooArtist"], search: { searchValues: searchTerm } });
 
+  /* Functions */
   const onChange = (value: string) => {
     setSearchTerm(value == "" ? undefined : value);
   };
-
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      refetch();
-    }, 500); // Debounce de 500ms para evitar muitas requisições
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm, refetch]);
 
   const openModal = (index: number) => {
     if (tattoos) setModalCard(tattoos[index]);
@@ -37,31 +35,43 @@ export default function TattooPageList() {
     setShowModal(false);
   };
 
+  const content = isLoading ? (
+    <Loading />
+  ) : (
+    <List.Container>
+      {tattoos?.map((tattoo, index) => (
+        <List.ImageContainer key={index}>
+          <List.Image src={tattoo.imageLink} onClick={() => openModal(index)} />
+        </List.ImageContainer>
+      ))}
+    </List.Container>
+  );
+
+  /* Use Effects */
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => refetch(), 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm, refetch]);
+
   return (
     <Background>
-      <TattooModal showModal={showModal} card={modalCard} close={closeModal} />
+      {modalCard && <TattooModal showModal={showModal} tattoo={modalCard} close={closeModal} />}
+
       <Input.Container>
         <div className="flex">
           <Input.Search
             onChange={(event) => onChange(event.target.value)}
             placeholder="Procure por tatuador, tatuagens, estilo ... "
           />
-          <Input.Button onClick={() => console.log("Click")}>
+
+          <Input.Button onClick={() => refetch()}>
             <SearchOutlined style={{ color: "#bf8a6b", fontSize: "22px" }} />
           </Input.Button>
         </div>
       </Input.Container>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <List.Container>
-          {tattoos?.map((tattoo, index) => (
-            <List.ImageContainer key={index}>
-              <List.Image src={tattoo.imageLink} onClick={() => openModal(index)} />
-            </List.ImageContainer>
-          ))}
-        </List.Container>
-      )}
+
+      {content}
     </Background>
   );
 }

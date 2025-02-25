@@ -6,6 +6,7 @@ export interface IRigthBox {
 
 export interface ILeftBox {
   children: ReactNode;
+  openModal?: () => void;
 }
 
 export interface IProfilesLayout {

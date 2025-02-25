@@ -8,14 +8,13 @@ interface ITattooList {
   refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>;
 }
 
-export function TattooList(props: ITattooList) {
+export function TattooListFavorits(props: ITattooList) {
   return (
     <div className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full">
       {props.tattoos?.map((tattoo, index) => (
         <TattooCard
           refetch={props.refetch}
           key={index}
-          editable={true}
           index={index}
           tattoo={tattoo}
           style={{ height: "40%", width: "18%" }}
