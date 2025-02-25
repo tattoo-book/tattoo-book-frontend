@@ -6,6 +6,7 @@ interface ITattooList {
 }
 
 export function TattooList(props: ITattooList) {
+  console.log("LIST: ", props.tattoos);
   return (
     <div className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full">
       {props.tattoos?.map((tattoo, index) => (

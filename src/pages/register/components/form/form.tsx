@@ -1,5 +1,5 @@
 import { LoadingOutlined, LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import { Flex, Spin } from "antd";
+import { Spin } from "antd";
 import { Link } from "react-router-dom";
 import { ButtonComponent } from "../../../../components/button/button";
 import { FormUI } from "../../../../components/form";
@@ -12,6 +12,7 @@ export function RegisterForm() {
   const { mutate, isPending } = useRegister();
 
   const onFinish = (credentials: IRegisterCredentials) => {
+    console.log(credentials);
     if (credentials.password != credentials.confirm) {
       console.log("Senha são diferentes");
       return;
@@ -29,7 +30,7 @@ export function RegisterForm() {
       <FormUI.Form
         className="bg-white"
         name="login"
-        initialValues={{}}
+        initialValues={{ artist: false }}
         style={{ maxWidth: 360, width: "80%" }}
         onFinish={onFinish}
       >
@@ -57,10 +58,8 @@ export function RegisterForm() {
           />
         </FormUI.Item>
 
-        <FormUI.Item>
-          <Flex justify="space-between" align="center">
-            <a href="">Recuperar senha</a>
-          </Flex>
+        <FormUI.Item name="artist" valuePropName="checked" noStyle>
+          <FormUI.Checkbox>Sou tatuador</FormUI.Checkbox>
         </FormUI.Item>
 
         <FormUI.Item>
@@ -70,11 +69,11 @@ export function RegisterForm() {
                 <Spin indicator={<LoadingOutlined spin />} size="large" style={{ color: "#734930" }} />
               </div>
             ) : (
-              "Entrar"
+              "Cadastrar"
             )}
           </ButtonComponent>
           <br></br>
-          ou <Link to={"/login"}>Login</Link>
+          fazer <Link to={"/login"}>Login</Link>
         </FormUI.Item>
       </FormUI.Form>
     </RegisterFormUI.Container>

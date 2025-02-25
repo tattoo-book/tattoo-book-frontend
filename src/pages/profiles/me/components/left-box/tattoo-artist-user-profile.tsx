@@ -8,10 +8,11 @@ import { SchedulingTime } from "./scheduling-times";
 export interface ILeftBox {
   profileInfo: User | undefined;
   openModal: () => void;
+  changeTab: (tab: string) => void;
 }
 
 export const TattooArtistUserProfile = (props: ILeftBox) => {
-  const [tabSelected, setTabSelect] = useState<string>("favorites");
+  const [tabSelected, setTabSelect] = useState<string>("tattoo-list");
 
   const getScheduling = (schedulings: SchedulingTimes[] | undefined) => {
     let result = "Fechado";
@@ -25,12 +26,16 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
     return result;
   };
 
-  const onClick = (value: string) => setTabSelect(value);
+  const onClick = (value: string) => {
+    props.changeTab(value);
+    setTabSelect(value);
+  };
 
   const teste: React.CSSProperties = { background: "rgb(229 231 235 / var(--tw-bg-opacity, 1))" };
 
   const favorites = (blocked: boolean) => (tabSelected == "favorites" && blocked ? teste : { cursor: "default" });
   const myInfo = (blocked: boolean) => (tabSelected == "my-info" && blocked ? teste : { cursor: "default" });
+  const myTattoos = (blocked: boolean) => (tabSelected == "tattoo-list" && blocked ? teste : { cursor: "default" });
 
   return (
     <div className="flex flex-col items-center gap-10 w-full h-full p-2">
@@ -48,7 +53,8 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
 
       <div className="w-full px-3 py-0 flex flex-col justify-start gap-3">
         <SelectTab style={myInfo(false)} blocked label="Informações do Perfil" />
-        <SelectTab onClick={() => onClick("favorites")} style={favorites(true)} label="Minhas Tatuagens" />
+        <SelectTab onClick={() => onClick("tattoo-list")} style={myTattoos(true)} label="Minhas Tatuagens" />
+        <SelectTab onClick={() => onClick("favorites")} style={favorites(true)} label="Favoritos" />
       </div>
 
       <div

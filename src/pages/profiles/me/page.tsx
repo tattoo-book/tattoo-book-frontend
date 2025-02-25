@@ -8,7 +8,7 @@ import { ModalRegisterTattoo } from "./components/modal/modal";
 import { RigthBox } from "./components/right-box/right-box";
 
 export default function ProfilePageMe() {
-  const [rigthBoxContent, _setRigthBoxContent] = useState<string>("tattoo-list");
+  const [rigthBoxContent, setRigthBoxContent] = useState<string>("tattoo-list");
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const { isLoading, error, data } = useGetInfoMe();
@@ -30,7 +30,11 @@ export default function ProfilePageMe() {
       <ProfilesLayout
         leftContent={
           data?.tattooArtist ? (
-            <TattooArtistUserProfile profileInfo={data} openModal={openModal} />
+            <TattooArtistUserProfile
+              changeTab={(tab: string) => setRigthBoxContent(tab)}
+              profileInfo={data}
+              openModal={openModal}
+            />
           ) : (
             <UserProfile profileInfo={data} />
           )
@@ -39,6 +43,7 @@ export default function ProfilePageMe() {
           <RigthBox
             content={rigthBoxContent}
             tattooList={data?.tattooArtist ? data?.tattooArtist.tattoos : data?.tattoos}
+            favorits={data?.tattoos}
             isTattooArtist={data?.tattooArtist ? true : false}
           />
         }

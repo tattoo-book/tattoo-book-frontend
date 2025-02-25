@@ -4,16 +4,16 @@ import { TattooList } from "./tattoos-list/tattoo-list";
 interface IRigthBox {
   content: string;
   tattooList: ITattoo[] | undefined;
+  favorits: ITattoo[] | undefined;
   isTattooArtist: boolean;
 }
 
 export const RigthBox = (props: IRigthBox) => {
-  if (props.content == "tattoo-list")
-    return props.isTattooArtist ? (
-      <TattooList tattoos={props.tattooList} />
-    ) : (
-      <TattooList tattoos={props.tattooList?.filter((item) => item.liked == true)} />
-    );
+  console.log("CONTENT", props.content);
+  if (props.content == "tattoo-list") return <TattooList tattoos={props.tattooList} />;
+  if (props.content == "favorites") {
+    return <TattooList tattoos={props.favorits?.filter((Item) => Item.liked == true)} />;
+  }
 
   return <div></div>;
 };
