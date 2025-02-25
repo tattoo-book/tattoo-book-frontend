@@ -24,6 +24,17 @@ class TattooGatewayImplement {
     }).then((res: any) => res.data);
   }
 
+  async create(tattoInfo: any) {
+    return await Gateway.request<Data<any>>({
+      method: "POST",
+      url: `/tattoos`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      data: tattoInfo,
+    }).then((res: any) => res.data);
+  }
+
   async unLike(tattooId: number) {
     return await Gateway.request<Data<any>>({
       method: "DELETE",

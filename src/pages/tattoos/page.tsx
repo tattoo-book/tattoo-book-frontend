@@ -41,7 +41,12 @@ export default function TattooPageList() {
     <List.Container>
       {tattoos?.map((tattoo, index) => (
         <List.ImageContainer key={index}>
-          <List.Image src={tattoo.imageLink} onClick={() => openModal(index)} />
+          <List.Image
+            src={tattoo.imageLink}
+            onClick={() => {
+              openModal(index);
+            }}
+          />
         </List.ImageContainer>
       ))}
     </List.Container>
@@ -56,7 +61,7 @@ export default function TattooPageList() {
 
   return (
     <Background>
-      <TattooModal showModal={showModal} tattoo={modalCard} close={closeModal} />
+      {modalCard && <TattooModal showModal={showModal} tattoo={modalCard} close={closeModal} />}
 
       <Input.Container>
         <div className="flex">
