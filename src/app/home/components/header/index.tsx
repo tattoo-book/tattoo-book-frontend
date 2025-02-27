@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { ButtonComponent } from '../../../../components/button/button'
+import { ButtonComponent } from '../../../../presentation/components/button/button'
 import { HomeUI } from '../../styles'
 
 const { Background, BackgroundGlass, Header, Content } = HomeUI

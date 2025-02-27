@@ -1,5 +1,5 @@
 'use client'
-import { TattooActions } from '@/infra/tattoos/tattoo.actions'
+import { TattooActions } from '@/@infra/tattoos/tattoo.actions'
 import { HeartFilled, HeartOutlined } from '@ant-design/icons'
 import { Card, Image } from 'antd'
 import Link from 'next/link'

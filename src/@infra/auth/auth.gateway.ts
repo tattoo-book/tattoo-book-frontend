@@ -1,4 +1,4 @@
-import { IRegisterCredentials } from '../../pages/register/components/form/form.interfaces'
+import { IRegisterCredentials } from '../../presentation/pages/register/components/form/form.interfaces'
 import { Gateway } from '../core/gateway/Gateway'
 import { Data } from '../tattoos/tattoo.interface'
 

@@ -1,5 +1,5 @@
 'use client'
-import { useSignIn } from '@/presentation/auth/sign-in.hook'
+import { useSignIn } from '@/presentation/hooks/auth/sign-in.hook'
 import { LoadingOutlined, LockOutlined, MailOutlined } from '@ant-design/icons'
 import { Flex, Spin } from 'antd'
 import Link from 'next/link'

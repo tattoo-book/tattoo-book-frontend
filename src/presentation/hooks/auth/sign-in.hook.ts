@@ -1,7 +1,7 @@
-import { ILoginCredentials } from '@/pages/login/components/form/form.interfaces'
+import { ILoginCredentials } from '@/presentation/pages/login/components/form/form.interfaces'
 import { useMutation } from '@tanstack/react-query'
 import { notification } from 'antd'
-import { AuthGateway } from '../../infra/auth/auth.gateway'
+import { AuthGateway } from '../../../@infra/auth/auth.gateway'
 
 interface IUseSignIn {
   navigate: () => void
