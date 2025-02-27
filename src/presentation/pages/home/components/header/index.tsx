@@ -1,6 +1,8 @@
 'use client'
 
+'use client'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { ButtonComponent } from '../../../../components/button/button'
 import { HomeUI } from '../../styles'
 
@@ -8,11 +10,11 @@ const { Background, BackgroundGlass, Header, Content } = HomeUI
 const { Titulo, SubTitulo } = Content
 
 export function HomeHeader() {
-  const navigate = (str: string) => {}
+  const navigate = useRouter()
 
   const logout = () => {
     localStorage.removeItem('token')
-    navigate('/login')
+    navigate.push('/login')
   }
 
   return (
@@ -20,7 +22,7 @@ export function HomeHeader() {
       <BackgroundGlass>
         <Header.Container>
           <Header.Nav>
-            <Header.Link onClick={() => navigate('/tattoos')}>Tatuagens</Header.Link>
+            <Header.Link onClick={() => navigate.push('/tattoos')}>Tatuagens</Header.Link>
             <Header.Link>Tatuadores</Header.Link>
             <Header.Link>Estudios</Header.Link>
           </Header.Nav>
@@ -32,7 +34,7 @@ export function HomeHeader() {
           />
           <Header.Nav>
             <Header.Link>Sobre nos</Header.Link>
-            <Header.Link onClick={() => navigate('/profiles/me')}>Profile</Header.Link>
+            <Header.Link onClick={() => navigate.push('/profiles/me')}>Profile</Header.Link>
             <Header.Link onClick={() => logout()}>Sair</Header.Link>
           </Header.Nav>
         </Header.Container>

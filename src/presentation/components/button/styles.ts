@@ -1,5 +1,4 @@
-'use client'
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const ContentButton = styled.button`
   padding: 18px 50px;
@@ -16,8 +15,8 @@ const ContentButton = styled.button`
     color: var(--elegance-brown);
     background-color: transparent;
   }
-`
+`;
 
 export const ButtonUI = {
   Button: ContentButton,
-}
+};

@@ -1,5 +1,6 @@
 'use client'
-import { useListTattoos } from '@/presentation/hooks/tattoos/list-tattoos.hook'
+import { ITattoo } from '@/infra/tattoos/tattoo.interface'
+import { useListTattoos } from '@/presentation/hooks/tattoos/list-tattoos'
 import { Loading } from '../../../../components/loading'
 import { TattooCard } from './card/card'
 import { MostPopularuTattoosUI } from './styles'
@@ -19,7 +20,7 @@ export function MostPopularyTattoos() {
           <Loading />
         ) : (
           <Content.CardList>
-            {data?.map((card, index) => (
+            {data?.map((card: ITattoo, index: any) => (
               <TattooCard key={index} index={index} tattoo={card} />
             ))}
           </Content.CardList>

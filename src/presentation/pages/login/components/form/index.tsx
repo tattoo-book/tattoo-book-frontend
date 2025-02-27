@@ -1,9 +1,8 @@
 'use client'
-import { useSignIn } from '@/presentation/hooks/auth/sign-in.hook'
+import { useSignIn } from '@/presentation/hooks/auth/sign-in'
 import { LoadingOutlined, LockOutlined, MailOutlined } from '@ant-design/icons'
 import { Flex, Spin } from 'antd'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { ButtonComponent } from '../../../../components/button/button'
 import { FormUI } from '../../../../components/form'
 import { ILoginCredentials } from './form.interfaces'
@@ -11,8 +10,7 @@ import { LOGIN_FORM_RULES } from './form.rules'
 import { LoginFormUI } from './styles'
 
 export default function LoginForm() {
-  const router = useRouter()
-  const { mutate, isPending } = useSignIn({ navigate: () => router.push('/home') })
+  const { mutate, isPending } = useSignIn()
 
   const onFinish = (credentials: ILoginCredentials) => {
     mutate(credentials)

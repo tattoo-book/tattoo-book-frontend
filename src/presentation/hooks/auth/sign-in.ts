@@ -1,19 +1,22 @@
-import { ILoginCredentials } from '@/presentation/pages/login/components/form/form.interfaces'
+import { AuthGateway } from '@/infra/auth/auth.gateway'
 import { useMutation } from '@tanstack/react-query'
 import { notification } from 'antd'
-import { AuthGateway } from '../../../infra/auth/auth.gateway'
+import { useRouter } from 'next/router'
+import { ILoginCredentials } from '../../pages/login/components/form/form.interfaces'
 
-interface IUseSignIn {
-  navigate: () => void
-}
+export function useSignIn() {
+  const navigate = useRouter()
 
-export function useSignIn(params: IUseSignIn) {
   const mutation = useMutation({
     mutationFn: async (credentials: ILoginCredentials) => {
       return AuthGateway.login(credentials)
     },
     onSuccess: (data) => {
-      if (data) params.navigate()
+      if (data) {
+        navigate.push('/home')
+      } else {
+        console.log('Login failed: Invalid credentials')
+      }
     },
     onError: (error: any) => {
       const description = error.response.data.description
