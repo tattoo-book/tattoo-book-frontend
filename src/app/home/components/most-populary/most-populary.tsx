@@ -1,5 +1,5 @@
 'use client'
-import { useListTattoos } from '@/domains/tattoos/list-tattoos.hook'
+import { useListTattoos } from '@/presentation/tattoos/list-tattoos.hook'
 import { Loading } from '../../../../components/loading'
 import { TattooCard } from './card/card'
 import { MostPopularuTattoosUI } from './styles'
