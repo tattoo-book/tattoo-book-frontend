@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { TattooGateway } from '../../../@infra/tattoos/tattoo.gateway'
+import { TattooGateway } from '../../../infra/tattoos/tattoo.gateway'
 
 export function useListTattos() {
   return useQuery({
