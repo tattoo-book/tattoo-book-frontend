@@ -1,4 +1,4 @@
-import { UserGateway } from '@/infra/users/users.gateway'
+import { UserGateway } from '@/external/users/users.gateway'
 import { useQuery } from '@tanstack/react-query'
 
 export function useGetInfoMe() {

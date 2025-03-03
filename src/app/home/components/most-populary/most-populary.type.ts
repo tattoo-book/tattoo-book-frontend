@@ -1,4 +1,4 @@
-import { ITattoo } from '../../../../infra/tattoos/tattoo.interface'
+import { ITattoo } from '../../../../external/tattoos/tattoo.interface'
 
 export interface ITattooCard {
   index: number

@@ -1,5 +1,5 @@
-import { TattooGateway } from '@/infra/tattoos/tattoo.gateway'
-import { ParamsDTO } from '@/infra/tattoos/tattoo.type'
+import { TattooGateway } from '@/external/tattoos/tattoo.gateway'
+import { ParamsDTO } from '@/external/tattoos/tattoo.type'
 import { useQuery } from '@tanstack/react-query'
 
 export function useListTattoos(params?: ParamsDTO) {

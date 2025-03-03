@@ -1,8 +1,8 @@
-import { AuthGateway } from '@/infra/auth/auth.gateway'
+import { AuthGateway } from '@/external/auth/auth.gateway'
 import { useMutation } from '@tanstack/react-query'
 import { notification } from 'antd'
 import { useRouter } from 'next/router'
-import { ILoginCredentials } from '../../pages/login/components/form/form.interfaces'
+import { ILoginCredentials } from '../../pages/public/login/components/form/form.interfaces'
 
 export function useSignIn() {
   const navigate = useRouter()

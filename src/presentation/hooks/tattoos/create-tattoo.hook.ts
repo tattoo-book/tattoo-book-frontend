@@ -1,4 +1,4 @@
-import { TattooGateway } from '@/infra/tattoos/tattoo.gateway'
+import { TattooGateway } from '@/external/tattoos/tattoo.gateway'
 import { useMutation } from '@tanstack/react-query'
 
 export function useCreateTattoo() {
