@@ -2,12 +2,9 @@
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
-  width: 25%;
-  min-width: 300px;
-  height: 80%;
-  border-radius: 1rem;
+  width: 35%;
+  height: 100%;
   background-color: white;
-  box-shadow: 2px 2px 20px rgba(0, 0, 0, 10);
 
   display: flex;
   align-items: center;
