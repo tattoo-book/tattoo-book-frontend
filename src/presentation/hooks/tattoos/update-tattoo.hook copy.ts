@@ -1,18 +1,18 @@
-import { useMutation } from "@tanstack/react-query";
-import { TattooGateway } from "../../infra/tattoos/tattoo.gateway";
+import { TattooGateway } from '@/external/tattoos/tattoo.gateway'
+import { useMutation } from '@tanstack/react-query'
 
 export function useUpdate() {
   const mutation = useMutation({
     mutationFn: async (tatooInfo: any) => {
-      return TattooGateway.update(tatooInfo);
+      return TattooGateway.update(tatooInfo)
     },
     onSuccess: (data) => {
-      console.log("Success on create tattoo");
+      console.log('Success on create tattoo')
     },
     onError: (error: any) => {
-      console.log("ERROR: ", error);
+      console.log('ERROR: ', error)
     },
-  });
+  })
 
-  return mutation;
+  return mutation
 }

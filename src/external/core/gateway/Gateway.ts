@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
 class GatewayDefault {
-  // static readonly baseURL = process.env.API_GATEWAY
-  static readonly baseURL = 'http://localhost:3001'
+  // static readonly baseURL = process.env.TATTOO_BOOK_HOST
+  static readonly baseURL = 'http://localhost:3000'
 
   async request<T>(config: AxiosRequestConfig) {
     config.baseURL = config.baseURL ? config.baseURL : GatewayDefault.baseURL

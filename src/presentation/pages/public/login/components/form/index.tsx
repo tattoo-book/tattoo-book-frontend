@@ -2,6 +2,7 @@
 import { useSignIn } from '@/presentation/hooks/auth/sign-in'
 import { LoadingOutlined, LockOutlined, MailOutlined } from '@ant-design/icons'
 import { Flex, Spin } from 'antd'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ButtonComponent } from '../../../../../components/button/button'
 import { FormUI } from '../../../../../components/form'
@@ -18,10 +19,7 @@ export default function LoginForm() {
 
   return (
     <LoginFormUI.Container>
-      <img
-        className="max-h-40"
-        src="https://static.wixstatic.com/media/64a834_b970259fd3ed4feeb549de6a89838cca~mv2.png/v1/fill/w_640,h_656,fp_0.49_0.41,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/64a834_b970259fd3ed4feeb549de6a89838cca~mv2.png"
-      />
+      <Image className="max-h-40" width={200} height={200} alt="logo" src={''} />
       <FormUI.Form
         className="bg-white"
         name="login"
@@ -45,7 +43,7 @@ export default function LoginForm() {
             <FormUI.Item name="remember" valuePropName="checked" noStyle>
               <FormUI.Checkbox>Lembre-se de mim</FormUI.Checkbox>
             </FormUI.Item>
-            <a href="">Recuperar senha</a>
+            <Link href="">Recuperar senha</Link>
           </Flex>
         </FormUI.Item>
 
