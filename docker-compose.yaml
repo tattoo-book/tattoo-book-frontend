@@ -1,0 +1,22 @@
+services:
+  nextjs-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules # Prevents host node_modules from conflicting
+    env_file:
+      - .env
+    network_mode: host
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Required for file watching in some environments
+      - NEXT_TELEMETRY_DISABLED=1 # Optionally disable telemetry
+    stdin_open: true # For interactive debugging
+    tty: true # For interactive debugging

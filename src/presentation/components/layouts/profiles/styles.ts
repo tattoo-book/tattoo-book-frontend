@@ -1,31 +1,26 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-const BackgroundGlass = styled.div`
+const Background = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(3px);
-`;
 
+  display: flex;
+  align-items: center;
+`
 const Container = styled.div`
   height: 100%;
-  width: 80%;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-`;
+  width: 100%;
+  padding: 20px 40px;
+`
 
-const Content = styled.div`
-  height: 90%;
-  width: 90%;
-  display: flex;
-  gap: 50px;
+const LeftContainer = styled.div`
+  height: 100%;
+  max-width: 20%;
+  min-width: 350px;
+  padding: 20px 40px;
+  background: white;
+`
 
-  @media (max-width: 1366px) {
-    gap: 30px;
-    width: 95%;
-  }
-`;
-
-export const ProfileLayoutUI = { BackgroundGlass, Container, Content };
+export const ProfileLayoutUI = { Background: Background, RighContainer: Container, LeftContainer: LeftContainer }

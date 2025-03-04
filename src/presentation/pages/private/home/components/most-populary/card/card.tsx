@@ -1,10 +1,12 @@
 'use client'
 import { TattooActions } from '@/external/tattoos/tattoo.actions'
+import { Box } from '@/presentation/components/box/box'
 import { HeartFilled, HeartOutlined } from '@ant-design/icons'
-import { Card, Image } from 'antd'
+import { Image } from 'antd'
 import Link from 'next/link'
 import { useState } from 'react'
 import { ITattooCard } from '../most-populary.type'
+import { CardUI } from './card.styles'
 
 export const TattooCard = (props: ITattooCard) => {
   const [liked, setLiked] = useState(props.tattoo.liked)
@@ -20,16 +22,9 @@ export const TattooCard = (props: ITattooCard) => {
   }
 
   return (
-    <Card
+    <CardUI.Card
       hoverable
-      style={{
-        width: 320,
-        height: 500,
-        backgroundColor: '#f2eeeb',
-        borderRadius: '0.75rem',
-        boxShadow: '2px 2px 15px #5e5e5e75',
-        overflow: 'hidden',
-      }}
+      style={{ width: 320, height: 500 }}
       cover={
         <div className="h-full w-full">
           <Image
@@ -44,7 +39,7 @@ export const TattooCard = (props: ITattooCard) => {
         </div>
       }
     >
-      <div>
+      <Box>
         <div className="flex justify-between">
           <h2 className="font-semibold" style={{ fontSize: '22px', whiteSpace: 'nowrap' }}>
             {`${props.tattoo.title}`}
@@ -63,6 +58,7 @@ export const TattooCard = (props: ITattooCard) => {
             />
           )}
         </div>
+
         <div className="flex justify-between items-baseline">
           <p
             className="size-4 whitespace-nowrap text-ellipsis overflow-hidden"
@@ -72,7 +68,7 @@ export const TattooCard = (props: ITattooCard) => {
           </p>
           <Link href={`/profiles/tattoo-artist/${props.tattoo.tattooArtistId}`}> ver tatuador</Link>
         </div>
-      </div>
-    </Card>
+      </Box>
+    </CardUI.Card>
   )
 }
