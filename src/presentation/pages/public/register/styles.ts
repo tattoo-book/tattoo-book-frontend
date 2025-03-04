@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Background = styled.div`
   width: 100vw;
@@ -13,6 +13,6 @@ const Background = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+`
 
-export const RegisterUI = { Background };
+export const RegisterPageUI = { Background }

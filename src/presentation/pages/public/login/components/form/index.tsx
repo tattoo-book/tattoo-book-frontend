@@ -20,6 +20,7 @@ export default function LoginForm() {
     <div
       style={{
         width: '35%',
+        minWidth: '300px',
         height: '100%',
         backgroundColor: 'white',
         display: 'flex',

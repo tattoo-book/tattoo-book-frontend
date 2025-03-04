@@ -1,10 +1,10 @@
-import { RegisterForm } from "./components/form/form";
-import { RegisterUI } from "./styles";
+import { RegisterForm } from './components/form/form'
+import { RegisterPageUI } from './styles'
 
 export function RegisterPage() {
   return (
-    <RegisterUI.Background>
+    <RegisterPageUI.Background>
       <RegisterForm />
-    </RegisterUI.Background>
-  );
+    </RegisterPageUI.Background>
+  )
 }
