@@ -36,7 +36,7 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
 
   return (
     <LeftBox.Container>
-      <Box className="flex w-full h-full flex-col items-center gap-10">
+      <Box className="w-full h-full">
         <Box
           style={{
             height: '3rem',
@@ -47,30 +47,31 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
             gap: '10px',
             cursor: 'pointer',
           }}
+          className="hover:text-gray-200"
           onClick={() => navigate.back()}
         >
           <ArrowLeftOutlined /> Voltar
         </Box>
-        <LeftBox.ProfileImg>
-          <img src={LogoURL} alt="profile-img" className="h-44 w-44" />
-        </LeftBox.ProfileImg>
+        <Box className="flex w-full h-full flex-col items-center gap-10" style={{ gap: '2rem' }}>
+          <LeftBox.ProfileImg>
+            <img src={LogoURL} alt="profile-img" className="h-44 w-44" />
+          </LeftBox.ProfileImg>
 
-        <Box className="w-full flex flex-col gap-10  items-center">
-          <Paragraph className="text-lg font-normal">@{props.profileInfo?.name}</Paragraph>
-        </Box>
+          <Box className="w-full flex flex-col gap-10  items-center">
+            <Paragraph className="text-base font-normal">@{props.profileInfo?.name}</Paragraph>
+          </Box>
 
-        <Box className="w-full flex flex-col justify-start gap-3">
-          <SelectTab style={myInfo(false)} blocked label="Informações do Perfil" />
-          <SelectTab onClick={() => onClick('tattoo-list')} style={myTattoos(true)} label="Minhas Tatuagens" />
-          <SelectTab onClick={() => onClick('favorites')} style={favorites(true)} label="Favoritos" />
+          <Box className="w-full flex flex-col justify-start gap-3">
+            <SelectTab style={myInfo(false)} blocked label="Informações do Perfil" />
+            <SelectTab onClick={() => onClick('tattoo-list')} style={myTattoos(true)} label="Minhas Tatuagens" />
+            <SelectTab onClick={() => onClick('favorites')} style={favorites(true)} label="Favoritos" />
+          </Box>
         </Box>
       </Box>
 
-      <Box className="w-full">
-        <ButtonComponent onClick={() => props?.openModal()} className="h-12 w-full capitalize">
-          Adicionar Tatuagem
-        </ButtonComponent>
-      </Box>
+      <ButtonComponent onClick={() => props?.openModal()} className="h-12 w-full capitalize">
+        Adicionar Tatuagem
+      </ButtonComponent>
     </LeftBox.Container>
   )
 }

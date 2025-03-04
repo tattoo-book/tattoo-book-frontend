@@ -68,12 +68,15 @@ export function TattooCard(props: Readonly<ICard>) {
           padding: '10px 20px',
           height: '25%',
           borderRadius: '0rem 0rem 0.75rem 0.75rem ',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-around',
         }}
       >
         <div className="flex justify-between">
           <h2
             className="font-bold text-lg whitespace-nowrap text-ellipsis overflow-hidden font-[Poppins]"
-            style={{ maxWidth: '80%' }}
+            style={{ maxWidth: '80%', fontWeight: 'bold' }}
           >
             {props.tattoo.title}
           </h2>
@@ -84,7 +87,7 @@ export function TattooCard(props: Readonly<ICard>) {
           )}
         </div>
 
-        <Box className="flex justify-between gap-3">
+        <Box className="flex justify-between gap-3" style={{ justifyContent: 'space-between' }}>
           <p className="overflow-hidden whitespace-nowrap text-base text-ellipsis font-[Poppins] max-w-[80%]">
             {props.tattoo.description}
           </p>

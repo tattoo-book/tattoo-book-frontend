@@ -10,7 +10,7 @@ interface ITattooList {
 
 export function TattooListFavorits(props: ITattooList) {
   return (
-    <div className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full h-full  ">
+    <div className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full h-full  " style={{ gap: '2rem' }}>
       {props.tattoos?.map((tattoo, index) => (
         <TattooCard
           refetch={props.refetch}
