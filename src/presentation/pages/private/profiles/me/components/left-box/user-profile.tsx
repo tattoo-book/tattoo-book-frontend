@@ -1,5 +1,8 @@
 'use client'
 import { User } from '@/external/users/user.type'
+import { Box } from '@/presentation/components/box/box'
+import { ArrowLeftOutlined } from '@ant-design/icons'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import SelectTab from '../../../../../../components/sidebar/select-tab'
 
@@ -9,6 +12,7 @@ export interface ILeftBox {
 
 export const UserProfile = (props: ILeftBox) => {
   const [tabSelected, setTabSelect] = useState<string>('favorites')
+  const navigate = useRouter()
 
   const teste: React.CSSProperties = { background: 'rgb(229 231 235 / var(--tw-bg-opacity, 1))' }
 
@@ -21,6 +25,20 @@ export const UserProfile = (props: ILeftBox) => {
 
   return (
     <div className="flex flex-col items-center gap-10 w-full h-full p-2">
+      <Box
+        style={{
+          height: '3rem',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          gap: '10px',
+          cursor: 'pointer',
+        }}
+        onClick={() => navigate.back()}
+      >
+        <ArrowLeftOutlined /> Voltar
+      </Box>
       <div style={{ background: '#8d8d8d', height: '180px', width: '180px', borderRadius: '50%', overflow: 'hidden' }}>
         <img
           src="https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369989.png"

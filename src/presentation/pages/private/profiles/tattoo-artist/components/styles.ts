@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Container = styled.div`
   height: 100%;
@@ -7,6 +7,7 @@ const Container = styled.div`
   border-radius: 10px;
   padding: 20px;
   display: flex;
-`;
+  background-color: white;
+`
 
-export const TattooArtistProfileComponentsUI = { Container: Container };
+export const TattooArtistProfileComponentsUI = { Container: Container }

@@ -1,7 +1,6 @@
 'use client'
 
 'use client'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { ButtonComponent } from '../../../../../components/button/button'
 import { HomeUI } from '../../styles'
@@ -26,12 +25,6 @@ export function HomeHeader() {
             <Header.Link>Tatuadores</Header.Link>
             <Header.Link>Estudios</Header.Link>
           </Header.Nav>
-          <Image
-            className="max-h-full"
-            alt=""
-            src=""
-            // src="https://static.wixstatic.com/media/64a834_b970259fd3ed4feeb549de6a89838cca~mv2.png/v1/fill/w_640,h_656,fp_0.49_0.41,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/64a834_b970259fd3ed4feeb549de6a89838cca~mv2.png"
-          />
           <Header.Nav>
             <Header.Link>Sobre nos</Header.Link>
             <Header.Link onClick={() => navigate.push('/profiles/me')}>Profile</Header.Link>

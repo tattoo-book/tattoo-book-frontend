@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/router'
+import { useParams } from 'next/navigation'
 import { useState } from 'react'
 import { ProfilesLayout } from '../../../../components/layouts/profiles/layout'
 import { Loading } from '../../../../components/loading'
@@ -8,8 +8,7 @@ import { LeftBox } from './components/left-box/left-box'
 import { RigthBox } from './components/right-box/right-box'
 
 export default function TattooArtistPage() {
-  const router = useRouter()
-  const { id } = router.query
+  const { id } = useParams()
   const [rigthBoxContent, setRigthBoxContent] = useState<string>('tattoo-list')
 
   const { isLoading, error, data: tattooArtist } = useGetSingleTattooArtist(id) // Use o hook

@@ -3,6 +3,8 @@ import { LogoURL } from '@/core/consts/logo'
 import { User } from '@/external/users/user.type'
 import { Box } from '@/presentation/components/box/box'
 import { Typography } from '@/presentation/components/typograph/typograph.styles'
+import { ArrowLeftOutlined } from '@ant-design/icons'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { ButtonComponent } from '../../../../../../components/button/button'
 import SelectTab from '../../../../../../components/sidebar/select-tab'
@@ -19,6 +21,7 @@ const { Paragraph } = Typography
 
 export const TattooArtistUserProfile = (props: ILeftBox) => {
   const [tabSelected, setTabSelect] = useState<string>('favorites')
+  const navigate = useRouter()
 
   const onClick = (value: string) => {
     props.changeTab(value)
@@ -34,13 +37,26 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
   return (
     <LeftBox.Container>
       <Box className="flex w-full h-full flex-col items-center gap-10">
+        <Box
+          style={{
+            height: '3rem',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            gap: '10px',
+            cursor: 'pointer',
+          }}
+          onClick={() => navigate.back()}
+        >
+          <ArrowLeftOutlined /> Voltar
+        </Box>
         <LeftBox.ProfileImg>
           <img src={LogoURL} alt="profile-img" className="h-44 w-44" />
         </LeftBox.ProfileImg>
 
         <Box className="w-full flex flex-col gap-10  items-center">
-          <Paragraph className="text-lg">{props.profileInfo?.name}</Paragraph>
-          <Paragraph className="text-lg font-normal">@{props.profileInfo?.name.split(' ')[0]}</Paragraph>
+          <Paragraph className="text-lg font-normal">@{props.profileInfo?.name}</Paragraph>
         </Box>
 
         <Box className="w-full flex flex-col justify-start gap-3">
@@ -50,7 +66,7 @@ export const TattooArtistUserProfile = (props: ILeftBox) => {
         </Box>
       </Box>
 
-      <Box>
+      <Box className="w-full">
         <ButtonComponent onClick={() => props?.openModal()} className="h-12 w-full capitalize">
           Adicionar Tatuagem
         </ButtonComponent>

@@ -7,6 +7,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query'
 import { Image } from 'antd'
 import { useState } from 'react'
+import { Box } from '../box/box'
 import { LikedIcon } from '../icons/liked.icon'
 import { UnLikedIcon } from '../icons/unliked.icon'
 import { ModalUpdateTattoo } from './components/modal/modal'
@@ -61,7 +62,14 @@ export function TattooCard(props: Readonly<ICard>) {
       >
         <Image style={{ objectFit: 'cover' }} alt={`image-${props.index}`} src={props.tattoo.imageLink} />
       </div>
-      <div className="bg-white h-1/4 px-5 py-3" style={{ borderRadius: '0rem 0rem 0.75rem 0.75rem ' }}>
+      <Box
+        style={{
+          backgroundColor: 'white',
+          padding: '10px 20px',
+          height: '25%',
+          borderRadius: '0rem 0rem 0.75rem 0.75rem ',
+        }}
+      >
         <div className="flex justify-between">
           <h2
             className="font-bold text-lg whitespace-nowrap text-ellipsis overflow-hidden font-[Poppins]"
@@ -76,17 +84,17 @@ export function TattooCard(props: Readonly<ICard>) {
           )}
         </div>
 
-        <div className="flex justify-between gap-3">
+        <Box className="flex justify-between gap-3">
           <p className="overflow-hidden whitespace-nowrap text-base text-ellipsis font-[Poppins] max-w-[80%]">
             {props.tattoo.description}
           </p>
 
-          <div className="flex gap-3">
+          <Box className="flex gap-3">
             {props.editable && <DeleteOutlined onClick={() => deleteTattoo()} />}
             {props.editable && <EditOutlined onClick={() => setShowModal(true)} />}
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
     </CardUI.Container>
   )
 }

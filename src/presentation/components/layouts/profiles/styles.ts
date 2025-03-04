@@ -5,22 +5,21 @@ const Background = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(3px);
-
+  padding: 1rem 4rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 `
-const Container = styled.div`
+const RighContainer = styled.div`
   height: 100%;
-  width: 100%;
-  padding: 20px 40px;
+  width: 80%;
 `
 
 const LeftContainer = styled.div`
   height: 100%;
   max-width: 20%;
   min-width: 350px;
-  padding: 20px 40px;
-  background: white;
+  padding: 20px 0px;
 `
 
-export const ProfileLayoutUI = { Background: Background, RighContainer: Container, LeftContainer: LeftContainer }
+export const ProfileLayoutUI = { Background: Background, RighContainer: RighContainer, LeftContainer: LeftContainer }

@@ -14,9 +14,11 @@ const LeftBoxContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
   width: 100%;
   height: 100%;
-  padding: 2rem 0.5rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
   gap: 2.5rem;
 `
 
