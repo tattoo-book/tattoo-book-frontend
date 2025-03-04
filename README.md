@@ -2,6 +2,7 @@
 
 ![](./images/readme/login-page.png)
 ![](./images/readme/login-redesign.png)
+![](./images/readme/register-redesign.png)
 ![](./images/readme/home-page.png)
 ![](./images/readme/section-one.png)
 ![](./images/readme/section-one-ampliada.png)

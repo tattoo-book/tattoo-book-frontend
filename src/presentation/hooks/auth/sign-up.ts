@@ -1,3 +1,4 @@
+'use client'
 import { AuthGateway } from '@/external/auth/auth.gateway'
 import { useMutation } from '@tanstack/react-query'
 import { notification } from 'antd'
