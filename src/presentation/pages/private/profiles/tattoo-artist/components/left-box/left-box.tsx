@@ -1,6 +1,7 @@
+'use client'
+import { SchedulingTimes, TattooArtist } from '@/external/tattoo-artist/tattoo-artist.type'
 import { useState } from 'react'
 import SelectTab from '../../../../../../components/sidebar/select-tab'
-import { SchedulingTimes, TattooArtist } from '../../../../../infra/tattoo-artist/tattoo-artist.type'
 import { SchedulingTime } from './scheduling-times'
 import { TattooArtistLeftBoxUI } from './styles'
 
@@ -12,7 +13,7 @@ export interface ILeftBox {
 }
 
 export const LeftBox = (props: ILeftBox) => {
-  const { artist } = props
+  const { artist, content, changeTab, openModal } = props
   const [tabSelected, setTabSelect] = useState<string>('populary-jobs')
 
   const getScheduling = (schedulings: SchedulingTimes[] | undefined) => {
@@ -33,11 +34,6 @@ export const LeftBox = (props: ILeftBox) => {
   const schedulings = (blocked: boolean) => (tabSelected == 'schedulings' && blocked ? teste : { cursor: 'default' })
   const feedbacks = (blocked: boolean) => (tabSelected == 'feedbacks' && blocked ? teste : { cursor: 'default' })
   const horario = (blocked: boolean) => (tabSelected == 'horario' && blocked ? teste : { cursor: 'default' })
-
-  const onClick = (value: string) => {
-    setTabSelect(value)
-    if (props.changeTab) props.changeTab(value)
-  }
 
   return (
     <TattooArtistLeftBoxUI.Container className="flex flex-col items-center gap-5 w-full h-full">

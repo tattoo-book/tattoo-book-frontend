@@ -9,7 +9,7 @@ export function Wellcome() {
     <Background>
       <Title style={{ fontSize: '100px' }}>Tattoo Book</Title>
       <Paragraph>Encontre as melhores ideias e os melhores profissionais.</Paragraph>
-      <Paragraph>Divulgue seu trabalhe, encontre clientes que procuram o que você oferece</Paragraph>
+      <Paragraph>Divulgue seu trabalho, encontre clientes que procuram o que você oferece.</Paragraph>
     </Background>
   )
 }

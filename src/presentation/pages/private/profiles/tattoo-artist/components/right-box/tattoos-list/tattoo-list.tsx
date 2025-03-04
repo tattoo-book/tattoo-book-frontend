@@ -1,3 +1,4 @@
+import { Key } from 'react'
 import styled from 'styled-components'
 import { TattooCard } from '../../../../../../../components/card/card'
 import { Loading } from '../../../../../../../components/loading'
@@ -10,8 +11,8 @@ const TattooListContainer = styled.div`
   overflow-y: scroll;
 `
 
-export function TattooList({ id }: { id: string | undefined }) {
-  const { isLoading, data } = useListTattoos({
+export function TattooList({ id }: { id: string | string[] | undefined }) {
+  const { isLoading, data, refetch } = useListTattoos({
     includes: ['likes', 'tattooArtist'],
     filter: { tattooArtistId: id ? [+id] : [2] },
   })
@@ -20,15 +21,15 @@ export function TattooList({ id }: { id: string | undefined }) {
 
   return (
     <TattooListContainer className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full">
-      {data &&
-        data?.map((tattoo, index) => (
-          <TattooCard
-            key={index}
-            index={index}
-            tattoo={tattoo}
-            style={{ maxHeight: '300px', minHeight: '280px', maxWidth: 'calc(20% - 24px)', minWidth: '200px' }}
-          />
-        ))}
+      {data?.map((tattoo, index) => (
+        <TattooCard
+          key={index as Key}
+          index={index}
+          tattoo={tattoo}
+          refetch={refetch}
+          style={{ maxHeight: '300px', minHeight: '280px', maxWidth: 'calc(20% - 24px)', minWidth: '200px' }}
+        />
+      ))}
     </TattooListContainer>
   )
 }

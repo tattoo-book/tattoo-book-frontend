@@ -1,25 +1,26 @@
+'use client'
 import { TattooActions } from '@/external/tattoos/tattoo.actions'
 import { TattooGateway } from '@/external/tattoos/tattoo.gateway'
 import { ITattoo } from '@/external/tattoos/tattoo.interface'
 import { User } from '@/external/users/user.type'
-import { DeleteOutlined, EditOutlined, HeartFilled, HeartOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query'
 import { Image } from 'antd'
 import { useState } from 'react'
+import { LikedIcon } from '../icons/liked.icon'
+import { UnLikedIcon } from '../icons/unliked.icon'
 import { ModalUpdateTattoo } from './components/modal/modal'
 import { CardUI } from './styles'
 
 export interface ICard {
   index: number
   tattoo: ITattoo
-  like?: () => void
-  unlike?: () => void
   style?: React.CSSProperties
   editable?: boolean
-  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>
+  readonly refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User | ITattoo[], Error>>
 }
 
-export function TattooCard(props: ICard) {
+export function TattooCard(props: Readonly<ICard>) {
   const [liked, setLiked] = useState(props.tattoo?.liked)
 
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -41,26 +42,6 @@ export function TattooCard(props: ICard) {
     await props.refetch()
   }
 
-  const renderHeartOutlined = () => {
-    return (
-      <HeartOutlined
-        onClick={() => like(props.tattoo.id)}
-        className="hover:animate-pulse hover:scale-125 transition-transform duration-200 ease-in-out"
-        style={{ fontFamily: 'Poppins', fontSize: '18px' }}
-      />
-    )
-  }
-
-  const renderHeartFilled = () => {
-    return (
-      <HeartFilled
-        onClick={() => unlike(props.tattoo.id)}
-        className="hover:animate-pulse hover:scale-125 transition-transform duration-300 ease-in-out"
-        style={{ color: 'red', fontFamily: 'Poppins', fontSize: '18px' }}
-      />
-    )
-  }
-
   const deleteTattoo = async () => {
     await TattooGateway.delete(props.tattoo.id)
     await props.refetch()
@@ -80,40 +61,27 @@ export function TattooCard(props: ICard) {
       >
         <Image style={{ objectFit: 'cover' }} alt={`image-${props.index}`} src={props.tattoo.imageLink} />
       </div>
-      <div
-        style={{ background: '#fff', height: '25%', padding: '10px 20px', borderRadius: '0rem 0rem 0.75rem 0.75rem ' }}
-      >
+      <div className="bg-white h-1/4 px-5 py-3" style={{ borderRadius: '0rem 0rem 0.75rem 0.75rem ' }}>
         <div className="flex justify-between">
           <h2
-            style={{
-              fontSize: '18px',
-              fontFamily: 'Poppins',
-              fontWeight: 'bold',
-              maxWidth: '80%',
-              overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis',
-            }}
+            className="font-bold text-lg whitespace-nowrap text-ellipsis overflow-hidden font-[Poppins]"
+            style={{ maxWidth: '80%' }}
           >
             {props.tattoo.title}
           </h2>
-          {liked ? renderHeartFilled() : renderHeartOutlined()}
+          {liked ? (
+            <LikedIcon onClick={() => unlike(props.tattoo.id)} />
+          ) : (
+            <UnLikedIcon onClick={() => like(props.tattoo.id)} />
+          )}
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
-          <p
-            style={{
-              fontFamily: 'Poppins',
-              fontSize: '14px',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              maxWidth: '100%',
-              whiteSpace: 'nowrap',
-            }}
-          >
+        <div className="flex justify-between gap-3">
+          <p className="overflow-hidden whitespace-nowrap text-base text-ellipsis font-[Poppins] max-w-[80%]">
             {props.tattoo.description}
           </p>
-          <div style={{ display: 'flex', gap: '10px' }}>
+
+          <div className="flex gap-3">
             {props.editable && <DeleteOutlined onClick={() => deleteTattoo()} />}
             {props.editable && <EditOutlined onClick={() => setShowModal(true)} />}
           </div>
