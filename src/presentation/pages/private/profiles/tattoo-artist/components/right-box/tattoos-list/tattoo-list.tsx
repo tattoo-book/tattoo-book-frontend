@@ -20,14 +20,17 @@ export function TattooList({ id }: { id: string | string[] | undefined }) {
   if (isLoading) return <Loading />
 
   return (
-    <TattooListContainer className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full">
+    <TattooListContainer
+      className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full"
+      style={{ gap: '2rem', height: '100%' }}
+    >
       {data?.map((tattoo, index) => (
         <TattooCard
           key={index as Key}
           index={index}
           tattoo={tattoo}
           refetch={refetch}
-          style={{ maxHeight: '300px', minHeight: '280px', maxWidth: 'calc(20% - 24px)', minWidth: '200px' }}
+          style={{ width: '220px', height: '40%' }}
         />
       ))}
     </TattooListContainer>
