@@ -1,18 +1,17 @@
-import styled from "styled-components";
+'use client'
+
+import styled from 'styled-components'
 
 const Background = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 
   display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+  justify-content: space-between;
+`
 
-export const RegisterUI = { Background };
+export const RegisterPageUI = { Layout: Background }

@@ -1,11 +1,12 @@
+'use client'
+import { AuthGateway } from '@/external/auth/auth.gateway'
 import { useMutation } from '@tanstack/react-query'
 import { notification } from 'antd'
-import { useNavigate } from 'react-router-dom'
-import { AuthGateway } from '../../infra/auth/auth.gateway'
+import { useRouter } from 'next/navigation'
 import { IRegisterCredentials } from '../../pages/public/register/components/form/form.interfaces'
 
 export function useRegister() {
-  const navigate = useNavigate()
+  const navigate = useRouter()
 
   const mutation = useMutation({
     mutationFn: async (credentials: IRegisterCredentials) => {
@@ -13,7 +14,7 @@ export function useRegister() {
     },
     onSuccess: (data) => {
       if (data) {
-        navigate('/login')
+        navigate.push('/login')
       } else {
         console.log('Register failed: Invalid credentials')
       }

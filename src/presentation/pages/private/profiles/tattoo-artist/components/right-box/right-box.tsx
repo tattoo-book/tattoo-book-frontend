@@ -1,10 +1,9 @@
-import { TattooList } from "./tattoos-list/tattoo-list";
+import { TattooList } from './tattoos-list/tattoo-list'
 
 interface IRigthBox {
-  content: string;
-  id: string | undefined;
+  id: string | string[] | undefined
 }
 
 export const RigthBox = (props: IRigthBox) => {
-  return <TattooList id={props.id} />;
-};
+  return <TattooList id={props.id} />
+}

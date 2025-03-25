@@ -1,26 +1,31 @@
+import { ITattoo } from '@/external/tattoos/tattoo.interface'
+import { User } from '@/external/users/user.type'
+import { Box } from '@/presentation/components/box/box'
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query'
+import { Key } from 'react'
 import { TattooCard } from '../../../../../../../components/card/card'
-import { ITattoo } from '../../../../../../infra/tattoos/tattoo.interface'
-import { User } from '../../../../../../infra/users/user.type'
 
 interface ITattooList {
-  tattoos: ITattoo[] | undefined
-  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>
+  readonly tattoos: ITattoo[] | undefined
+  readonly refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<User, Error>>
 }
 
 export function TattooList(props: ITattooList) {
   return (
-    <div className="flex gap-6 p-2 flex-wrap overflow-y-scroll w-full">
+    <Box
+      className="flex p-2  flex-wrap overflow-y-scroll w-full h-full"
+      style={{ gap: '2rem', flexWrap: 'wrap', overflowY: 'scroll' }}
+    >
       {props.tattoos?.map((tattoo, index) => (
         <TattooCard
           refetch={props.refetch}
-          key={index}
+          key={index as Key}
           editable={true}
           index={index}
           tattoo={tattoo}
-          style={{ height: '40%', width: '18%' }}
+          style={{ height: '40%', width: '230px' }}
         />
       ))}
-    </div>
+    </Box>
   )
 }

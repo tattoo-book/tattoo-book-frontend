@@ -1,7 +1,7 @@
 import { AuthGateway } from '@/external/auth/auth.gateway'
 import { useMutation } from '@tanstack/react-query'
 import { notification } from 'antd'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { ILoginCredentials } from '../../pages/public/login/components/form/form.interfaces'
 
 export function useSignIn() {

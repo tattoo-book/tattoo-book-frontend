@@ -4,7 +4,8 @@ import styled from 'styled-components'
 const Background = styled.div`
   width: 100vw;
   padding: 3rem 0rem;
-  background-color: var(--elegance-off-white);
+  background-color: #fff;
+  border-top: 1px solid rgb(120, 120, 120, 80);
 `
 
 const FooterContainer = styled.div`
